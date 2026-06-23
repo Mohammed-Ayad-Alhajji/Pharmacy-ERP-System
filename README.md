@@ -56,3 +56,26 @@
 افتح موجه الأوامر (Terminal) ونفذ:
 ```bash
 git clone [https://github.com/Mohammed-Ayad-Alhajji/Pharmacy-ERP-System.git](https://github.com/Mohammed-Ayad-Alhajji/Pharmacy-ERP-System.git)
+
+
+⚙️ 2. إعداد بيئة التطوير (IDE Setup - IntelliJ / Eclipse)
+نظراً لاعتماد المشروع على واجهات JavaFX وقاعدة بيانات مضمنة، يرجى اتباع الخطوات الهندسية التالية:
+
+قم بفتح المشروع في بيئة التطوير الخاصة بك.
+
+ربط مكتبة قاعدة البيانات: تأكد من إضافة ملف sqlite-jdbc.jar إلى مسار البناء (Build Path / Libraries) الخاص بالمشروع.
+
+إعداد JavaFX: * قم بتحميل JavaFX SDK المطابق لنسخة الـ JDK لديك.
+
+أضف مكتبات JavaFX إلى (Global Libraries).
+
+خطوة هامة: في إعدادات التشغيل (Run/Debug Configurations)، أضف السطر التالي إلى حقل VM Options (مع تعديل المسار لمسار JavaFX لديك):
+
+Plaintext
+--module-path "C:\path\to\javafx-sdk\lib" --add-modules javafx.controls,javafx.fxml
+▶️ 3. التشغيل (Running)
+قم بتنفيذ الفئة الرئيسية Main.java.
+
+سيقوم النظام بالتحقق من وجود قاعدة البيانات؛ إن لم تكن موجودة، سيتم بناؤها فوراً وسيتم توجيهك لشاشة تسجيل الدخول الأولى.
+
+تم التطوير بواسطة: محمد أياد الحاجي
