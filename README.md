@@ -56,7 +56,7 @@
 افتح موجه الأوامر (Terminal) ونفذ:
 ```bash
 git clone [https://github.com/Mohammed-Ayad-Alhajji/Pharmacy-ERP-System.git](https://github.com/Mohammed-Ayad-Alhajji/Pharmacy-ERP-System.git)
-
+```
 
 ⚙️ 2. إعداد بيئة التطوير (IDE Setup - IntelliJ / Eclipse)
 نظراً لاعتماد المشروع على واجهات JavaFX وقاعدة بيانات مضمنة، يرجى اتباع الخطوات الهندسية التالية:
