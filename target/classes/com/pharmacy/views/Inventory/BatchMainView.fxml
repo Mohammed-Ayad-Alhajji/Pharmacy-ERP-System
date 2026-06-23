@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane nodeOrientation="RIGHT_TO_LEFT" prefHeight="768.0" prefWidth="1200.0" style="-fx-background-color: #f0f2f5;" stylesheets="@/com/pharmacy/styles/global.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.inventory.BatchMainController">
+    <padding>
+        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+    </padding>
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="15.0" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="20.0" />
+            </BorderPane.margin>
+            <children>
+                <Label text="رادار التشغيلات والصلاحيات ⏱️" textFill="#1e293b">
+                    <font><Font name="System Bold" size="26.0" /></font>
+                </Label>
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="20.0" style="-fx-background-color: white; -fx-padding: 20; -fx-background-radius: 12; -fx-border-color: #e2e8f0; -fx-border-radius: 12;" BorderPane.alignment="CENTER">
+            <effect>
+                <DropShadow color="#0000001a" offsetY="4" radius="8" spread="0.05" />
+            </effect>
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #f8fafc; -fx-padding: 15; -fx-background-radius: 8; -fx-border-color: #cbd5e1; -fx-border-radius: 8;">
+                    <children>
+                        <Label text="🔍 البحث:" textFill="#475569">
+                            <font><Font name="System Bold" size="14.0" /></font>
+                        </Label>
+                        <TextField fx:id="searchField" prefHeight="35.0" prefWidth="300.0" promptText="اسم الدواء، الباركود، رقم التشغيلة..." style="-fx-background-radius: 5; -fx-border-radius: 5;" />
+                        
+                        <Region HBox.hgrow="ALWAYS" />
+
+                        <Label text="فلتر الصلاحية:" textFill="#475569">
+                            <font><Font name="System Bold" size="14.0" /></font>
+                        </Label>
+                        <ComboBox fx:id="expiryFilterCombo" prefHeight="35.0" prefWidth="200.0" style="-fx-background-radius: 5;" />
+                    </children>
+                </HBox>
+
+                <TableView fx:id="batchesTable" VBox.vgrow="ALWAYS" style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e2e8f0;">
+                    <columns>
+                        <TableColumn fx:id="indexCol" prefWidth="60.0" text="#" style="-fx-alignment: CENTER;" />
+                        <TableColumn fx:id="medNameCol" prefWidth="250.0" text="اسم الدواء (التجاري)" style="-fx-font-weight: bold; -fx-text-fill: #1e293b;" />
+                        <TableColumn fx:id="batchNumberCol" prefWidth="130.0" text="التشغيلة" style="-fx-alignment: CENTER;" />
+                        <TableColumn fx:id="quantityCol" prefWidth="90.0" text="الكمية" style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-text-fill: #3b82f6;" />
+                        <TableColumn fx:id="costCol" prefWidth="120.0" text="تكلفة الشراء" style="-fx-alignment: CENTER;" />
+                        <TableColumn fx:id="mfgDateCol" prefWidth="110.0" text="تاريخ الإنتاج" style="-fx-alignment: CENTER;" />
+                        <TableColumn fx:id="expDateCol" prefWidth="110.0" text="تاريخ الانتهاء" style="-fx-alignment: CENTER;" />
+                        <TableColumn fx:id="statusCol" prefWidth="160.0" text="حالة الصلاحية" style="-fx-alignment: CENTER;" />
+                        <TableColumn fx:id="actionCol" prefWidth="120.0" text="إجراءات" style="-fx-alignment: CENTER;" />
+                    </columns>
+                </TableView>
+
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label text="عرض:" textFill="#64748b"><font><Font name="System Bold" size="13.0" /></font></Label>
+                        <ComboBox fx:id="rowsPerPageCombo" prefHeight="30.0" prefWidth="80.0" style="-fx-background-radius: 5;" />
+                        <Label text="سطراً لكل صفحة" textFill="#64748b"><font><Font name="System Bold" size="13.0" /></font></Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Pagination fx:id="pagination" maxPageIndicatorCount="5" pageCount="1" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

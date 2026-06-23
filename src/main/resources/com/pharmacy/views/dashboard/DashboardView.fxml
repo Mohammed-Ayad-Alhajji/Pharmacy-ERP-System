@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane fitToWidth="true" style="-fx-background-color: #f4f6f9;" stylesheets="@/com/pharmacy/styles/global.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.dashboard.DashboardController">
+    <content>
+        <VBox nodeOrientation="RIGHT_TO_LEFT" spacing="20.0" style="-fx-background-color: #f4f6f9;">
+            <padding>
+                <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
+            </padding>
+            <children>
+                
+                <Label styleClass="page-title" text="ملخص الأداء اليومي" />
+
+                <HBox spacing="20.0">
+                    <children>
+                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <Label styleClass="kpi-icon, icon-green" text="💰" />
+                                    <Label styleClass="kpi-title" text="مبيعات اليوم" />
+                                </HBox>
+                                <Label fx:id="todaySalesLabel" styleClass="kpi-value" text="0.00" />
+                            </children>
+                        </VBox>
+
+                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <Label styleClass="kpi-icon, icon-blue" text="🛒" />
+                                    <Label styleClass="kpi-title" text="مشتريات اليوم" />
+                                </HBox>
+                                <Label fx:id="todayPurchasesLabel" styleClass="kpi-value" text="0.00" />
+                            </children>
+                        </VBox>
+
+                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <Label styleClass="kpi-icon, icon-orange" text="📈" />
+                                    <Label styleClass="kpi-title" text="إجمالي الذمم (لنا)" />
+                                </HBox>
+                                <Label fx:id="receivablesLabel" styleClass="kpi-value" text="0.00" />
+                            </children>
+                        </VBox>
+
+                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <Label styleClass="kpi-icon, icon-red" text="📉" />
+                                    <Label styleClass="kpi-title" text="إجمالي الذمم (علينا)" />
+                                </HBox>
+                                <Label fx:id="payablesLabel" styleClass="kpi-value" text="0.00" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <VBox styleClass="dashboard-card" HBox.hgrow="ALWAYS" prefWidth="500.0">
+                            <children>
+                                <Label styleClass="section-title" text="مبيعات آخر 7 أيام" />
+                                <LineChart fx:id="salesLineChart" animated="false" legendVisible="false" VBox.vgrow="ALWAYS">
+                                    <xAxis>
+                                        <CategoryAxis fx:id="xAxis" side="BOTTOM" />
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis fx:id="yAxis" side="LEFT" />
+                                    </yAxis>
+                                </LineChart>
+                            </children>
+                        </VBox>
+
+                        <VBox styleClass="dashboard-card" HBox.hgrow="ALWAYS" prefWidth="350.0">
+                            <children>
+                                <Label styleClass="section-title" text="الأدوية الـ 5 الأكثر مبيعاً" />
+                                <PieChart fx:id="topMedicinesChart" animated="true" labelsVisible="true" legendSide="BOTTOM" VBox.vgrow="ALWAYS" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+                    <children>
+                        <VBox styleClass="dashboard-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="section-title" text="آخر 5 عمليات بيع" />
+                                <TableView fx:id="recentSalesTable" prefHeight="200.0" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn fx:id="saleIdCol" prefWidth="80.0" text="رقم الفاتورة" />
+                                        <TableColumn fx:id="saleTimeCol" prefWidth="120.0" text="الوقت" />
+                                        <TableColumn fx:id="saleValueCol" prefWidth="100.0" text="القيمة" />
+                                        <TableColumn fx:id="saleMethodCol" prefWidth="100.0" text="طريقة الدفع" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+
+                        <VBox styleClass="dashboard-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label styleClass="section-title" text="حركة الصندوق اليوم" />
+                                <TableView fx:id="cashMovementTable" prefHeight="200.0" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn fx:id="cashTypeCol" prefWidth="100.0" text="نوع الحركة" />
+                                        <TableColumn fx:id="cashDescCol" prefWidth="150.0" text="البيان" />
+                                        <TableColumn fx:id="cashAmountCol" prefWidth="100.0" text="المبلغ" />
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>

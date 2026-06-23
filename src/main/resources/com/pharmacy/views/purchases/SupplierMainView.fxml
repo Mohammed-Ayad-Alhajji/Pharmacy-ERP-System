@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane nodeOrientation="RIGHT_TO_LEFT" prefHeight="768.0" prefWidth="1200.0" style="-fx-background-color: #f4f6f9;" stylesheets="@/com/pharmacy/styles/global.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.purchases.SupplierMainController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="15.0" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="20.0" />
+            </BorderPane.margin>
+            <children>
+                <Label text="دليل الموردين والشركات" textFill="#2c3e50">
+                    <font><Font name="System Bold" size="24.0" /></font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button mnemonicParsing="false" onAction="#handleAddNewSupplier" styleClass="button-primary" text="إضافة مورد جديد +">
+                    <font><Font name="System Bold" size="14.0" /></font>
+                </Button>
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="15.0" styleClass="pos-panel" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </padding>
+            <children>
+                
+                <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #ffffff; -fx-padding: 10; -fx-background-radius: 5; -fx-border-color: #e0e0e0; -fx-border-radius: 5;">
+                    <children>
+                        <Label text="بحث:" textFill="#34495e"><font><Font name="System Bold" size="13.0" /></font></Label>
+                        <TextField fx:id="searchField" prefWidth="300.0" promptText="بحث باسم المورد، المندوب، أو رقم الهاتف..." styleClass="search-field" />
+                        
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#handleClearFilters" styleClass="button" text="مسح البحث ❌" />
+                    </children>
+                </HBox>
+
+                <TableView fx:id="suppliersTable" VBox.vgrow="ALWAYS" styleClass="table-view">
+                    <columns>
+                        <TableColumn fx:id="indexCol" prefWidth="70.0" text="الرقم" />
+                        <TableColumn fx:id="nameCol" prefWidth="250.0" text="اسم المورد / الشركة" />
+                        <TableColumn fx:id="contactCol" prefWidth="200.0" text="اسم المندوب (جهة الاتصال)" />
+                        <TableColumn fx:id="phoneCol" prefWidth="150.0" text="رقم الهاتف" />
+                        <TableColumn fx:id="addressCol" prefWidth="250.0" text="العنوان" />
+                        <TableColumn fx:id="actionCol" prefWidth="180.0" text="إجراءات" />
+                    </columns>
+                </TableView>
+                
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label text="عرض:" textFill="#34495e"><font><Font name="System Bold" size="13.0" /></font></Label>
+                        <ComboBox fx:id="rowsPerPageCombo" prefWidth="80.0" />
+                        <Label text="سطراً لكل صفحة" textFill="#34495e"><font><Font name="System Bold" size="13.0" /></font></Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Pagination fx:id="pagination" maxPageIndicatorCount="5" pageCount="1" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

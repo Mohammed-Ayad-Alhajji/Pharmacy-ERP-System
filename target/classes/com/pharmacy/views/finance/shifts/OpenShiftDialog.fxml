@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox nodeOrientation="RIGHT_TO_LEFT" prefWidth="420.0" spacing="20.0" styleClass="dialog-root" stylesheets="@/com/pharmacy/styles/global.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.finance.shifts.OpenShiftController">
+    <padding>
+        <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
+    </padding>
+    <children>
+        <!-- رأس النافذة -->
+        <VBox spacing="5.0" style="-fx-border-color: transparent transparent #e0e0e0 transparent; -fx-border-width: 0 0 1 0; -fx-padding: 0 0 15 0;">
+            <Label style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="بدء وردية جديدة 🟢" />
+            <Label style="-fx-text-fill: #7f8c8d; -fx-font-size: 13px;" text="يرجى إدخال الرصيد الافتتاحي (العهدة) الموجود في الصندوق حالياً." />
+        </VBox>
+
+        <!-- جسم النافذة (حقول الإدخال) -->
+        <VBox spacing="15.0">
+            <!-- معلومات المستخدم -->
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+                <Label style="-fx-font-weight: bold; -fx-text-fill: #34495e; -fx-font-size: 14px;" text="المستخدم الحالي:" />
+                <Label fx:id="cashierNameLabel" style="-fx-text-fill: #0ba360; -fx-font-weight: bold; -fx-font-size: 14px;" text="[اسم الكاشير من الجلسة]" />
+            </HBox>
+
+            <!-- حقل الرصيد الافتتاحي -->
+            <VBox spacing="8.0">
+                <Label style="-fx-font-weight: bold; -fx-text-fill: #34495e;" text="رصيد الصندوق الافتتاحي:" />
+                <TextField fx:id="openingBalanceField" prefHeight="45.0" promptText="0.00" styleClass="custom-text-field" text="0" />
+            </VBox>
+
+            <!-- حقل الملاحظات -->
+            <VBox spacing="8.0">
+                <Label style="-fx-font-weight: bold; -fx-text-fill: #34495e;" text="ملاحظات (اختياري):" />
+                <TextField fx:id="notesField" prefHeight="45.0" promptText="أي ملاحظات حول حالة الصندوق..." styleClass="custom-text-field" />
+            </VBox>
+            
+            <!-- رسالة خطأ مخفية -->
+            <Label fx:id="errorLabel" style="-fx-text-fill: #e74c3c; -fx-font-weight: bold;" visible="false" />
+        </VBox>
+
+        <!-- تذييل النافذة (الأزرار) -->
+        <HBox alignment="CENTER_RIGHT" spacing="15.0">
+            <VBox.margin>
+                <Insets top="10.0" />
+            </VBox.margin>
+            <Region HBox.hgrow="ALWAYS" />
+            <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#handleCancel" prefHeight="40.0" prefWidth="100.0" styleClass="btn-cancel" text="إلغاء" />
+            <Button fx:id="confirmButton" defaultButton="true" mnemonicParsing="false" onAction="#handleConfirm" prefHeight="40.0" prefWidth="160.0" styleClass="btn-primary-action" text="تأكيد وبدء الوردية" />
+        </HBox>
+    </children>
+</VBox>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane nodeOrientation="RIGHT_TO_LEFT" prefHeight="768.0" prefWidth="1200.0" style="-fx-background-color: #f4f6f9;" stylesheets="@/com/pharmacy/styles/global.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.inventory.MedicineMainController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="15.0" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="20.0" />
+            </BorderPane.margin>
+            <children>
+                <Label text="دليل الأدوية والمخزون" textFill="#2c3e50">
+                    <font><Font name="System Bold" size="24.0" /></font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS" />
+                <Button mnemonicParsing="false" onAction="#handleAddNewMedicine" styleClass="button-primary" text="إضافة دواء جديد +">
+                    <font><Font name="System Bold" size="14.0" /></font>
+                </Button>
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="15.0" styleClass="pos-panel" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </padding>
+            <children>
+                
+                <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #ffffff; -fx-padding: 10; -fx-background-radius: 5; -fx-border-color: #e0e0e0; -fx-border-radius: 5;">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" spacing="5.0" style="-fx-border-color: #bdc3c7; -fx-border-width: 1; -fx-border-radius: 5; -fx-padding: 2 10 2 10;">
+                            <children>
+                                <Label text="🔍" />
+                                <TextField fx:id="searchField" prefWidth="250.0" promptText="بحث بالباركود أو الاسم..." style="-fx-background-color: transparent; -fx-border-width: 0;" />
+                            </children>
+                        </HBox>
+                        
+                        <Label text="التصنيفات:" textFill="#34495e"><font><Font name="System Bold" size="13.0" /></font></Label>
+                        <MenuButton fx:id="categoryFilterMenu" mnemonicParsing="false" prefWidth="180.0" text="كل التصنيفات" />
+                        
+                        <CheckBox fx:id="showLowStockCheckBox" mnemonicParsing="false" onAction="#handleApplyFilters" text="عرض النواقص فقط 📉" textFill="#e74c3c">
+                            <font><Font name="System Bold" size="12.0" /></font>
+                        </CheckBox>
+
+                        <CheckBox fx:id="showInactiveCheckBox" mnemonicParsing="false" onAction="#handleApplyFilters" text="عرض الموقوف 🛑" textFill="#7f8c8d">
+                            <font><Font name="System Bold" size="12.0" /></font>
+                        </CheckBox>
+
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button mnemonicParsing="false" onAction="#handleClearFilters" styleClass="button" text="مسح الفلاتر ❌" />
+                    </children>
+                </HBox>
+
+                <TableView fx:id="medicinesTable" styleClass="table-view" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="indexCol" prefWidth="50.0" text="الرقم" />
+                        <TableColumn fx:id="barcodeCol" prefWidth="110.0" text="الباركود" />
+                        <TableColumn fx:id="brandNameCol" prefWidth="180.0" text="الاسم التجاري" />
+                        <TableColumn fx:id="genericNameCol" prefWidth="150.0" text="الاسم العلمي" />
+                        <TableColumn fx:id="categoryCol" prefWidth="120.0" text="التصنيف" />
+                        <TableColumn fx:id="totalStockCol" prefWidth="100.0" style="-fx-alignment: CENTER; -fx-font-size: 14px;" text="الرصيد الحالي" />
+                        <TableColumn fx:id="boxPriceCol" prefWidth="90.0" text="سعر العلبة" />
+                        <TableColumn fx:id="unitPriceCol" prefWidth="90.0" text="سعر الظرف" />
+                        <TableColumn fx:id="statusCol" prefWidth="80.0" text="الحالة" />
+                        <TableColumn fx:id="actionCol" prefWidth="250.0" style="-fx-alignment: CENTER;" text="إجراءات" />
+                    </columns>
+                </TableView>
+                
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label text="عرض:" textFill="#34495e"><font><Font name="System Bold" size="13.0" /></font></Label>
+                        <ComboBox fx:id="rowsPerPageCombo" prefWidth="80.0" />
+                        <Label text="سطراً لكل صفحة" textFill="#34495e"><font><Font name="System Bold" size="13.0" /></font></Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Pagination fx:id="pagination" maxPageIndicatorCount="5" pageCount="1" />
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" stylesheets="@/com/pharmacy/styles/global.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.purchases.PurchaseHistoryController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <HBox spacing="15" alignment="CENTER_LEFT" styleClass="header-box">
+        <Label text="سجل فواتير المشتريات" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+        <Region HBox.hgrow="ALWAYS" />
+        
+        <TextField fx:id="txtSearch" promptText="بحث (رقم الفاتورة، المورد...)" prefWidth="250" styleClass="search-field"/>
+        
+        <Separator orientation="VERTICAL" />
+        
+        <ComboBox fx:id="cbPaymentStatus" promptText="حالة الدفع" prefWidth="130"/>
+        
+        <DatePicker fx:id="dpStartDate" promptText="من تاريخ" prefWidth="130"/>
+        <DatePicker fx:id="dpEndDate" promptText="إلى تاريخ" prefWidth="130"/>
+        
+        <Button text="تطبيق" onAction="#handleSearch" styleClass="btn-primary" prefWidth="80"/>
+        <Button text="حذف الفلترة" onAction="#loadAllPurchases" styleClass="btn-secondary" prefWidth="80"/>
+    </HBox>
+
+    <TableView fx:id="tvPurchases" VBox.vgrow="ALWAYS" styleClass="main-table">
+        <columns>
+            <TableColumn fx:id="colIndex" text="#" prefWidth="50" />
+            <TableColumn fx:id="colPurchaseId" text="رقم الفاتورة" prefWidth="90" />
+            <TableColumn fx:id="colSupplierInvoice" text="فاتورة المورد" prefWidth="120" />
+            <TableColumn fx:id="colPurchaseDate" text="التاريخ والوقت" prefWidth="160" />
+            <TableColumn fx:id="colSupplierName" text="اسم المورد" prefWidth="180" />
+            <TableColumn fx:id="colTotalCost" text="الإجمالي" prefWidth="120" />
+            <TableColumn fx:id="colPaymentStatus" text="حالة الدفع" prefWidth="100" />
+            <TableColumn fx:id="colAction" text="الإجراءات" prefWidth="180" />
+        </columns>
+        <placeholder>
+            <Label text="لا توجد فواتير مطابقة لخيارات البحث" />
+        </placeholder>
+    </TableView>
+
+    <HBox spacing="15" alignment="CENTER" styleClass="footer-box">
+        <HBox spacing="5" alignment="CENTER_LEFT">
+            <Label text="عرض:" />
+            <ComboBox fx:id="cbRowLimit" prefWidth="80" />
+            <Label text="سطر" />
+        </HBox>
+
+        <Region HBox.hgrow="ALWAYS" />
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="btnPrevPage" text="السابق" onAction="#handlePrevPage" styleClass="btn-secondary"/>
+            <Label fx:id="lblPageInfo" text="صفحة 1 من 1" style="-fx-font-weight: bold;"/>
+            <Button fx:id="btnNextPage" text="التالي" onAction="#handleNextPage" styleClass="btn-secondary"/>
+        </HBox>
+    </HBox>
+</VBox>

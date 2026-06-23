@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" stylesheets="@/com/pharmacy/styles/global.css" prefWidth="550" prefHeight="650" 
+      nodeOrientation="RIGHT_TO_LEFT" style="-fx-background-color: white;"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" 
+      fx:controller="com.pharmacy.controllers.finance.shifts.ShiftDetailsModalController">
+    <padding>
+        <Insets top="20" right="25" bottom="20" left="25"/>
+    </padding>
+
+    <Label text="تفاصيل الجرد المالي للوردية" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" alignment="CENTER" maxWidth="Infinity" />
+    <HBox alignment="CENTER" spacing="10">
+        <Label text="رقم الوردية:" style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px;"/>
+        <Label fx:id="lblShiftId" text="---" style="-fx-font-weight: bold; -fx-font-size: 14px;" />
+    </HBox>
+
+    <Separator />
+
+    <VBox spacing="8" style="-fx-background-color: #f8f9fa; -fx-padding: 15; -fx-border-color: #dcdde1; -fx-border-radius: 5; -fx-background-radius: 5;">
+        <Label text="المقبوضات (+)" style="-fx-font-weight: bold; -fx-text-fill: #27ae60; -fx-font-size: 16px;" />
+        <Separator />
+        <GridPane hgap="10" vgap="10">
+            <Label text="الرصيد الافتتاحي:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Label fx:id="lblOpening" text="0 ل.س" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.halignment="RIGHT" />
+
+            <Label text="المبيعات النقدية:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Label fx:id="lblCashSales" text="0 ل.س" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.halignment="RIGHT" />
+
+            <Label text="مقبوضات العملاء السابقة:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Label fx:id="lblCustomerReceipts" text="0 ل.س" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.halignment="RIGHT" />
+
+            <Label text="مقبوضات شركات التأمين:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <Label fx:id="lblInsuranceReceipts" text="0 ل.س" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.halignment="RIGHT" />
+
+            <Label text="استرداد نقدي من موردين:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <Label fx:id="lblSupplierRefunds" text="0 ل.س" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.halignment="RIGHT" />
+        </GridPane>
+    </VBox>
+
+    <VBox spacing="8" style="-fx-background-color: #fdf2e9; -fx-padding: 15; -fx-border-color: #fad7a1; -fx-border-radius: 5; -fx-background-radius: 5;">
+        <Label text="المدفوعات والمصروفات (-)" style="-fx-font-weight: bold; -fx-text-fill: #e67e22; -fx-font-size: 16px;" />
+        <Separator />
+        <GridPane hgap="10" vgap="10">
+            <Label text="مرتجعات المرضى (كاش):" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Label fx:id="lblPatientRefunds" text="0 ل.س" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="0" GridPane.halignment="RIGHT" />
+
+            <Label text="مدفوعات للموردين (نقداً):" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <Label fx:id="lblSupplierPayments" text="0 ل.س" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.halignment="RIGHT" />
+
+            <Label text="المصروفات اليومية (نثريات):" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <Label fx:id="lblExpenses" text="0 ل.س" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.halignment="RIGHT" />
+        </GridPane>
+    </VBox>
+
+    <VBox spacing="10" style="-fx-background-color: #ecf0f1; -fx-padding: 15; -fx-border-color: #bdc3c7; -fx-border-width: 2; -fx-border-radius: 8; -fx-background-radius: 8;">
+        <HBox>
+            <Label text="الرصيد المتوقع (حسب النظام):" style="-fx-font-weight: bold; -fx-font-size: 15px; -fx-text-fill: #2980b9;" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblExpected" text="0 ل.س" style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #2980b9;" />
+        </HBox>
+        <HBox>
+            <Label text="الرصيد الفعلي (المسلم بالدرج):" style="-fx-font-weight: bold; -fx-font-size: 15px;" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblActual" text="0 ل.س" style="-fx-font-weight: bold; -fx-font-size: 16px;" />
+        </HBox>
+        <Separator />
+        <HBox alignment="CENTER">
+            <Label fx:id="lblDifference" text="متطابق ✓" style="-fx-font-weight: bold; -fx-font-size: 18px;" />
+        </HBox>
+    </VBox>
+
+    <Region VBox.vgrow="ALWAYS" />
+    <Button text="إغلاق النافذة" onAction="#handleClose" maxWidth="Infinity" style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10;" />
+</VBox>

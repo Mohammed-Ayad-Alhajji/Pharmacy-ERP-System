@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane nodeOrientation="RIGHT_TO_LEFT" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #f4f6f9;" stylesheets="@/com/pharmacy/styles/global.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.finance.ExpenseMainController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="15.0" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="20.0" />
+            </BorderPane.margin>
+            <children>
+                <Label text="سجل المصروفات" textFill="#2c3e50">
+                    <font>
+                        <Font name="System Bold" size="24.0" />
+                    </font>
+                </Label>
+                
+                <Region HBox.hgrow="ALWAYS" />
+                
+                <Button fx:id="manageCategoriesBtn" minHeight="40.0" minWidth="185.0" mnemonicParsing="false" onAction="#handleManageCategories" prefHeight="40.0" prefWidth="170.0" styleClass="button-secondary" text="إدارة فئات المصروفات ⚙️">
+                    <font><Font name="System Bold" size="14.0" /></font>
+                </Button>
+                
+                <Button minHeight="40.0" minWidth="170.0" mnemonicParsing="false" onAction="#handleAddNewExpense" prefHeight="40.0" prefWidth="160.0" styleClass="button-primary" text="تسجيل مصروف جديد +">
+                    <font><Font name="System Bold" size="14.0" /></font>
+                </Button>
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="15.0" styleClass="pos-panel" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </padding>
+            <children>
+                
+                <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #ffffff; -fx-padding: 10; -fx-background-radius: 5; -fx-border-color: #e0e0e0; -fx-border-radius: 5;">
+                    <children>
+                        <Label text="من تاريخ:" textFill="#34495e"><font><Font name="System Bold" size="13.0" /></font></Label>
+                        <DatePicker fx:id="startDatePicker" prefWidth="130.0" />
+                        
+                        <Label text="إلى تاريخ:" textFill="#34495e"><font><Font name="System Bold" size="13.0" /></font></Label>
+                        <DatePicker fx:id="endDatePicker" prefWidth="130.0" />
+                        
+                        <Label text="الفئات:" textFill="#34495e"><font><Font name="System Bold" size="13.0" /></font></Label>
+                        <MenuButton fx:id="categoryFilterMenu" mnemonicParsing="false" prefWidth="180.0" text="كل الفئات" />
+                        
+                        <Region HBox.hgrow="ALWAYS" />
+                        
+                        <Button mnemonicParsing="false" onAction="#handleApplyFilters" styleClass="button-primary" text="تطبيق الفلتر 🔍" />
+                        <Button mnemonicParsing="false" onAction="#handleClearFilters" styleClass="button" text="مسح الفلاتر ❌" />
+                    </children>
+                </HBox>
+
+                <TableView fx:id="expensesTable" styleClass="table-view" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="idCol" prefWidth="80.0" text="الرقم" />
+                        <TableColumn fx:id="dateCol" prefWidth="180.0" text="التاريخ والوقت" />
+                        <TableColumn fx:id="categoryCol" prefWidth="180.0" text="تصنيف المصروف" />
+                        <TableColumn fx:id="amountCol" prefWidth="150.0" text="المبلغ" />
+                        <TableColumn fx:id="descCol" prefWidth="300.0" text="البيان / الملاحظات" />
+                        <TableColumn fx:id="actionCol" prefWidth="170.0" text="إجراء" />
+                    </columns>
+                </TableView>
+                
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Label text="عرض:" textFill="#34495e"><font><Font name="System Bold" size="13.0" /></font></Label>
+                        <ComboBox fx:id="rowsPerPageCombo" prefWidth="80.0" />
+                        <Label text="سطراً لكل صفحة" textFill="#34495e"><font><Font name="System Bold" size="13.0" /></font></Label>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Pagination fx:id="pagination" maxPageIndicatorCount="5" pageCount="1" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                    </VBox.margin>
+                </HBox>
+                
+                <HBox alignment="CENTER_RIGHT" spacing="10.0">
+                    <children>
+                        <Label text="إجمالي المصروفات المعروضة:" textFill="#7f8c8d">
+                            <font><Font name="System Bold" size="16.0" /></font>
+                        </Label>
+                        <Label fx:id="totalExpensesLabel" text="0.00" textFill="#e74c3c">
+                            <font><Font name="System Bold" size="22.0" /></font>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </HBox>
+                
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

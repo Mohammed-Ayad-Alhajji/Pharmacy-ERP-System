@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane nodeOrientation="RIGHT_TO_LEFT" prefHeight="700.0" prefWidth="1200.0" style="-fx-background-color: #f4f6f9;" stylesheets="@/com/pharmacy/styles/global.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.inventory.MedicineAlternativesController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <top>
+        <HBox alignment="CENTER_LEFT" BorderPane.alignment="CENTER">
+            <BorderPane.margin><Insets bottom="20.0" /></BorderPane.margin>
+            <children>
+                <Label text="إدارة البدائل الدوائية 🔗" textFill="#2c3e50">
+                    <font><Font name="System Bold" size="24.0" /></font>
+                </Label>
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <SplitPane dividerPositions="0.5" style="-fx-background-color: transparent;">
+            <items>
+                <VBox spacing="10.0" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 8; -fx-border-color: #e0e0e0; -fx-border-radius: 8;">
+                    <Label text="1. اختر الدواء الأساسي" textFill="#34495e">
+                        <font><Font name="System Bold" size="16.0" /></font>
+                    </Label>
+                    <TextField fx:id="searchMainField" promptText="بحث بالاسم أو الباركود..." style="-fx-font-size: 14px;" />
+                    <TableView fx:id="mainTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="mainBrandCol" prefWidth="250.0" text="الاسم التجاري" style="-fx-font-weight: bold;" />
+                            <TableColumn fx:id="mainGenericCol" prefWidth="250.0" text="الاسم العلمي" />
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <VBox fx:id="leftPanel" disable="true" spacing="15.0" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 8; -fx-border-color: #e0e0e0; -fx-border-radius: 8;">
+                    <VBox spacing="5.0" style="-fx-background-color: #e8f8f5; -fx-padding: 15; -fx-background-radius: 5; -fx-border-color: #1abc9c; -fx-border-radius: 5;">
+                        <Label text="البدائل الدوائية المربوطة بـ:" textFill="#16a085">
+                            <font><Font name="System Bold" size="14.0" /></font>
+                        </Label>
+                        <Label fx:id="lblSelectedMedicine" text="[لم يتم اختيار دواء]" textFill="#2c3e50">
+                            <font><Font name="System Bold" size="20.0" /></font>
+                        </Label>
+                    </VBox>
+
+                    <TableView fx:id="altTable" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="altBrandCol" prefWidth="220.0" text="اسم البديل التجاري" style="-fx-font-weight: bold;" />
+                            <TableColumn fx:id="altGenericCol" prefWidth="200.0" text="المادة الفعالة" />
+                            <TableColumn fx:id="altActionCol" prefWidth="100.0" text="إلغاء الربط" style="-fx-alignment: CENTER;" />
+                        </columns>
+                    </TableView>
+
+                    <Separator />
+
+                    <VBox spacing="10.0" style="-fx-background-color: #f8f9fa; -fx-padding: 15; -fx-background-radius: 5; -fx-border-color: #dcdde1; -fx-border-radius: 5;">
+                        <Label text="2. إضافة دواء بديل جديد" textFill="#2980b9">
+                            <font><Font name="System Bold" size="16.0" /></font>
+                        </Label>
+                        <HBox spacing="10.0">
+                            <ComboBox fx:id="searchAltCombo" editable="true" maxWidth="Infinity" promptText="ابحث عن الدواء البديل هنا..." HBox.hgrow="ALWAYS" />
+                            <Button mnemonicParsing="false" onAction="#handleAddAlternative" prefWidth="120.0" styleClass="button-primary" text="ربط كبديل 🔗" />
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </items>
+        </SplitPane>
+    </center>
+</BorderPane>

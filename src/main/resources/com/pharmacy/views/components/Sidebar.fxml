@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="sidebar" nodeOrientation="RIGHT_TO_LEFT" prefWidth="260.0" styleClass="sidebar" stylesheets="@/com/pharmacy/styles/global.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.components.SidebarController">
+    <children>
+
+        <VBox>
+            <children>
+                <Button fx:id="navDashboardBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navDashboard" styleClass="sidebar-btn" text="لوحة القيادة (الرئيسية)" />
+
+                <Accordion styleClass="sidebar-accordion">
+                    <panes>
+                        <TitledPane fx:id="salesPane" text="إدارة المبيعات">
+                            <content>
+                                <VBox>
+                                    <children>
+                                        <Button fx:id="posBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navPOS" styleClass="submenu-btn" text="نقطة البيع السريعة" />
+                                        <Button fx:id="salesListBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navSales" styleClass="submenu-btn" text="إدارة الفواتير والمبيعات" />
+                                        <Button fx:id="patientReturnsBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navPatientReturns" styleClass="submenu-btn" text="مرتجعات المرضى" />
+                                        <Button fx:id="localCustomersBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navLocalCustomers" styleClass="submenu-btn" text="العملاء المحليون" />
+                                        <Button fx:id="insuranceBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navInsurance" styleClass="submenu-btn" text="شركات التأمين" />
+                                    </children>
+                                </VBox>
+                            </content>
+                        </TitledPane>
+
+                        <TitledPane fx:id="purchasesPane" text="المشتريات">
+                            <content>
+                                <VBox>
+                                    <children>
+                                        <Button fx:id="newPurchaseBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navNewPurchase" styleClass="submenu-btn" text="فاتورة شراء جديدة" />
+                                        <Button fx:id="purchasesListBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navPurchasesList" styleClass="submenu-btn" text="إدارة فواتير الشراء" />
+                                        <Button fx:id="suppliersBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navSuppliers" styleClass="submenu-btn" text="إدارة الموردين" />
+                                        <Button fx:id="supplierReturnsBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navSupplierReturns" styleClass="submenu-btn" text="مرتجعات الموردين" />
+                                    </children>
+                                </VBox>
+                            </content>
+                        </TitledPane>
+
+                        <TitledPane fx:id="inventoryPane" text="المستودع">
+                            <content>
+                                <VBox>
+                                    <children>
+                                        <Button fx:id="medicinesBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navMedicines" styleClass="submenu-btn" text="دليل الأدوية" />
+                                        <Button fx:id="categoriesBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navCategories" styleClass="submenu-btn" text="تصنيفات الأدوية" />
+                                        <Button fx:id="batchesBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navBatches" styleClass="submenu-btn" text="التشغيلات والصلاحية" />
+                                        <Button fx:id="alternativesBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navAlternatives" styleClass="submenu-btn" text="البدائل الدوائية" />
+                                        <Button fx:id="adjustmentsBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navAdjustments" styleClass="submenu-btn" text="تسوية وإتلاف الجرد" />
+                                    </children>
+                                </VBox>
+                            </content>
+                        </TitledPane>
+
+                        <TitledPane fx:id="financePane" text="المالية والحسابات">
+                            <content>
+                                <VBox>
+                                    <children>
+                                        <Button fx:id="shiftsBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navShifts" styleClass="submenu-btn" text="إدارة الورديات والصندوق" />
+                                        <Button fx:id="expensesBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navExpenses" styleClass="submenu-btn" text="المصروفات اليومية" />
+                                        <Button fx:id="customerReceiptsBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navCustomerReceipts" styleClass="submenu-btn" text="مقبوضات العملاء" />
+                                        <Button fx:id="insurancePaymentsBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navInsurancePayments" styleClass="submenu-btn" text="مقبوضات التأمين" />
+                                        <Button fx:id="supplierPaymentsBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navSupplierPayments" styleClass="submenu-btn" text="مدفوعات الموردين" />
+                                    </children>
+                                </VBox>
+                            </content>
+                        </TitledPane>
+
+                        <TitledPane fx:id="reportsPane" text="التقارير والكشوفات">
+                            <content>
+                                <VBox>
+                                    <children>
+                                        
+                                        <Button fx:id="masterFinancialReportBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navMasterFinancialReport" styleClass="submenu-btn" text="التقرير المالي الشامل" style="-fx-font-weight: bold; -fx-text-fill: #27ae60;" />
+                                        <Button fx:id="customerStatementBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navCustomerStatement" styleClass="submenu-btn" text="كشف حساب عميل" />
+                                        <Button fx:id="insuranceStatementBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navInsuranceStatement" styleClass="submenu-btn" text="كشف حساب شركة تأمين" />
+                                        <Button fx:id="supplierStatementBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navSupplierStatement" styleClass="submenu-btn" text="كشف حساب مورد" />
+                                    </children>
+                                </VBox>
+                            </content>
+                        </TitledPane>
+
+                        <TitledPane fx:id="adminPane" text="الإدارة والإعدادات">
+                            <content>
+                                <VBox>
+                                    <children>
+                                        <Button fx:id="usersBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navUsers" styleClass="submenu-btn" text="المستخدمون" />
+                                        <Button fx:id="rolesBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navRoles" styleClass="submenu-btn" text="الأدوار والصلاحيات" />
+                                        <Button fx:id="auditLogsBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navAuditLogs" styleClass="submenu-btn" text="سجل المراقبة" />
+                                        <Button fx:id="settingsBtn" maxWidth="Infinity" mnemonicParsing="false" onAction="#navSettings" styleClass="submenu-btn" text="إعدادات النظام" />
+                                    </children>
+                                </VBox>
+                            </content>
+                        </TitledPane>
+                    </panes>
+                </Accordion>
+            </children>
+        </VBox>
+
+        <Region VBox.vgrow="ALWAYS" />
+        
+        <VBox alignment="BOTTOM_CENTER">
+            <padding><Insets bottom="25.0" left="20.0" right="20.0" top="15.0" /></padding>
+            <children>
+                <Button fx:id="logoutButton" maxWidth="Infinity" mnemonicParsing="false" onAction="#handleLogout" styleClass="btn-logout" text="تسجيل الخروج 🚪" />
+            </children>
+        </VBox>
+    </children>
+</VBox>

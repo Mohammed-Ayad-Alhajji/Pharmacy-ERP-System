@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="25" stylesheets="@/com/pharmacy/styles/global.css" nodeOrientation="RIGHT_TO_LEFT" prefWidth="550" style="-fx-background-color: #f8f9fa;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.finance.CreateCustomerPaymentController">
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <HBox alignment="CENTER">
+        <Label text="استلام دفعة نقدية من زبون (+)" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+    </HBox>
+    
+    <Separator />
+
+    <VBox spacing="20">
+        <HBox alignment="CENTER_LEFT" spacing="15">
+            <Label text="ابحث عن الزبون:" prefWidth="130" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+            <TextField fx:id="txtCustomerSearch" promptText="اكتب اسم الزبون..." prefWidth="300" style="-fx-font-size: 14px;" />
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="15" style="-fx-padding: 5 0 5 0;">
+            <Label text="إجمالي الدين عليه:" prefWidth="130" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+            <Label fx:id="lblTotalDebt" text="0.00 ل.س" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #e74c3c;" />
+        </HBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="15">
+            <Label text="المبلغ المراد دفعه:" prefWidth="130" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+            <TextField fx:id="txtAmount" promptText="0.00" prefWidth="300" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #27ae60;" />
+        </HBox>
+    </VBox>
+
+    <HBox alignment="CENTER" style="-fx-background-color: #ffffff; -fx-padding: 10; -fx-border-color: #dcdde1; -fx-border-radius: 5; -fx-background-radius: 5;">
+        <Label text="* هذا المبلغ سيتم إضافته لدرج الكاشير، وسيُخصم من أقدم فواتيره غير المسددة تلقائياً." style="-fx-text-fill: #7f8c8d; -fx-font-size: 12px;" />
+    </HBox>
+
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Button text="تأكيد وحفظ" onAction="#handleSavePayment" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 15px; -fx-padding: 8 20; -fx-cursor: hand;" />
+        <Button text="إلغاء وإغلاق" onAction="#handleCancel" style="-fx-background-color: #ecf0f1; -fx-text-fill: #2c3e50; -fx-border-color: #bdc3c7; -fx-font-weight: bold; -fx-font-size: 15px; -fx-padding: 8 20; -fx-cursor: hand;" />
+    </HBox>
+</VBox>

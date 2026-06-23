@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20" stylesheets="@/com/pharmacy/styles/global.css" prefWidth="1200" prefHeight="700" 
+      nodeOrientation="RIGHT_TO_LEFT" xmlns="http://javafx.com/javafx/17" 
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.finance.ShiftManagementController">
+    <padding>
+        <Insets top="20" right="25" bottom="20" left="25"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label text="سجل إدارة الورديات وتقفيل الصندوق" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+        <Region HBox.hgrow="ALWAYS" />
+    </HBox>
+
+    <Separator />
+
+    <HBox spacing="15" alignment="CENTER_LEFT" style="-fx-background-color: #f8f9fa; -fx-padding: 15; -fx-background-radius: 8; -fx-border-color: #dcdde1; -fx-border-radius: 8;">
+        <Label text="بحث عن كاشير:" style="-fx-font-weight: bold;" />
+        <TextField fx:id="txtSearchCashier" promptText="اكتب اسم الموظف..." prefWidth="200" />
+
+        <Separator orientation="VERTICAL" />
+
+        <Label text="من:" style="-fx-font-weight: bold;" />
+        <DatePicker fx:id="dpStartDate" prefWidth="130" />
+
+        <Label text="إلى:" style="-fx-font-weight: bold;" />
+        <DatePicker fx:id="dpEndDate" prefWidth="130" />
+
+        <Separator orientation="VERTICAL" />
+
+        <Label text="الحالة:" style="-fx-font-weight: bold;" />
+        <ComboBox fx:id="cbStatus" prefWidth="120" />
+
+        <Region HBox.hgrow="ALWAYS" />
+        <Button text="بحث وتحديث" onAction="#loadData" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" />
+    </HBox>
+
+    <TableView fx:id="tvShifts" VBox.vgrow="ALWAYS" styleClass="main-table">
+        <columns>
+            <TableColumn fx:id="colIndex" text="#" prefWidth="40" style="-fx-alignment: CENTER;" />
+            <TableColumn fx:id="colShiftId" text="رقم الوردية" prefWidth="90" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+            <TableColumn fx:id="colCashier" text="اسم الكاشير" prefWidth="160" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+            <TableColumn fx:id="colStartTime" text="بداية الوردية" prefWidth="130" style="-fx-alignment: CENTER;" />
+            <TableColumn fx:id="colStatus" text="الحالة" prefWidth="90" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+            
+            <TableColumn fx:id="colOpening" text="رصيد افتتاحي" prefWidth="110" style="-fx-alignment: CENTER-RIGHT; -fx-text-fill: #7f8c8d;"/>
+            <TableColumn fx:id="colExpected" text="الرصيد المتوقع" prefWidth="110" style="-fx-alignment: CENTER-RIGHT; -fx-font-weight: bold; -fx-text-fill: #2980b9;"/>
+            <TableColumn fx:id="colActual" text="الرصيد الفعلي (مسلم)" prefWidth="125" style="-fx-alignment: CENTER-RIGHT; -fx-font-weight: bold;"/>
+            <TableColumn fx:id="colDifference" text="العجز / الزيادة" prefWidth="120" style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-font-size: 13px;"/>
+
+            <TableColumn fx:id="colActions" text="إجراءات" prefWidth="140" style="-fx-alignment: CENTER;" />
+        </columns>
+        <placeholder>
+            <Label text="لا توجد ورديات مطابقة للفلاتر الحالية" style="-fx-font-size: 15px; -fx-text-fill: #95a5a6;"/>
+        </placeholder>
+    </TableView>
+
+</VBox>

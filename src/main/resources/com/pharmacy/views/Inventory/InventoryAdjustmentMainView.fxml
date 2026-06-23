@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane nodeOrientation="RIGHT_TO_LEFT" prefHeight="768.0" prefWidth="1280.0" style="-fx-background-color: #f4f6f9;" stylesheets="@/com/pharmacy/styles/global.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.inventory.InventoryAdjustmentMainController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="15.0" BorderPane.alignment="CENTER">
+            <BorderPane.margin><Insets bottom="20.0" /></BorderPane.margin>
+            <children>
+                <Label text="سجل المراقبة: تسويات الجرد والإتلاف" textFill="#2c3e50">
+                    <font><Font name="System Bold" size="24.0" /></font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS" />
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <TabPane tabClosingPolicy="UNAVAILABLE" styleClass="main-tab-pane">
+            <tabs>
+                <Tab text="سجل تسويات الجرد ⚖️">
+                    <content>
+                        <VBox spacing="15.0" styleClass="pos-panel">
+                            <padding><Insets bottom="15.0" left="15.0" right="15.0" top="15.0" /></padding>
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #ffffff; -fx-padding: 10; -fx-background-radius: 5; -fx-border-color: #e0e0e0;">
+                                    <Button mnemonicParsing="false" onAction="#handleNewAdjustment" styleClass="button-primary" text="تسوية جديدة +" />
+                                    <Separator orientation="VERTICAL" />
+                                    <Label text="من:" style="-fx-font-weight: bold;" />
+                                    <DatePicker fx:id="adjStartDate" prefWidth="120.0" />
+                                    <Label text="إلى:" style="-fx-font-weight: bold;" />
+                                    <DatePicker fx:id="adjEndDate" prefWidth="120.0" />
+                                    <Separator orientation="VERTICAL" />
+                                    <Label text="المسؤول:" style="-fx-font-weight: bold;" />
+                                    <ComboBox fx:id="adjUserCombo" prefWidth="130.0" promptText="كل المستخدمين" />
+                                    <Separator orientation="VERTICAL" />
+                                    <TextField fx:id="adjSearchField" prefWidth="200.0" promptText="بحث بالدواء أو الملاحظات..." />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Button mnemonicParsing="false" onAction="#clearAdjFilters" styleClass="button-secondary" text="مسح الفلاتر" />
+                                </HBox>
+
+                                <TableView fx:id="adjTable" VBox.vgrow="ALWAYS" styleClass="table-view">
+                                    <columns>
+                                        <TableColumn fx:id="adjIdCol" prefWidth="70.0" text="رقم" style="-fx-alignment: CENTER;" />
+                                        <TableColumn fx:id="adjDateCol" prefWidth="130.0" text="التاريخ" style="-fx-alignment: CENTER;" />
+                                        <TableColumn fx:id="adjUserCol" prefWidth="130.0" text="المستخدم (المسؤول)" style="-fx-font-weight: bold;" />
+                                        <TableColumn fx:id="adjMedCol" prefWidth="180.0" text="اسم الدواء" style="-fx-text-fill: #2980b9; -fx-font-weight: bold;" />
+                                        <TableColumn fx:id="adjBatchCol" prefWidth="100.0" text="رقم الطبخة" style="-fx-alignment: CENTER;" />
+                                        <TableColumn fx:id="adjSysQtyCol" prefWidth="80.0" text="كمية دفترية" style="-fx-alignment: CENTER;" />
+                                        <TableColumn fx:id="adjActualQtyCol" prefWidth="80.0" text="كمية فعلية" style="-fx-alignment: CENTER;" />
+                                        <TableColumn fx:id="adjDiffCol" prefWidth="80.0" text="الفرق" style="-fx-alignment: CENTER;" />
+                                        <TableColumn fx:id="adjNotesCol" prefWidth="250.0" text="الملاحظات" />
+                                    </columns>
+                                </TableView>
+
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <Label text="عرض:" style="-fx-font-weight: bold;" />
+                                    <ComboBox fx:id="adjRowsCombo" prefWidth="80.0" />
+                                    <Label text="سطراً" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Pagination fx:id="adjPagination" maxPageIndicatorCount="5" pageCount="1" />
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+
+                <Tab text="سجل الإتلافات والخسائر 🗑️">
+                    <content>
+                        <VBox spacing="15.0" styleClass="pos-panel">
+                            <padding><Insets bottom="15.0" left="15.0" right="15.0" top="15.0" /></padding>
+                            <children>
+                                <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: #ffffff; -fx-padding: 10; -fx-background-radius: 5; -fx-border-color: #e0e0e0;">
+                                    <Button mnemonicParsing="false" onAction="#handleNewDisposal" styleClass="button-primary" style="-fx-background-color: #c0392b;" text="إتلاف جديد 🗑️" />
+                                    <Separator orientation="VERTICAL" />
+                                    <Label text="من:" style="-fx-font-weight: bold;" />
+                                    <DatePicker fx:id="dispStartDate" prefWidth="120.0" />
+                                    <Label text="إلى:" style="-fx-font-weight: bold;" />
+                                    <DatePicker fx:id="dispEndDate" prefWidth="120.0" />
+                                    <Separator orientation="VERTICAL" />
+                                    <Label text="المسؤول:" style="-fx-font-weight: bold;" />
+                                    <ComboBox fx:id="dispUserCombo" prefWidth="130.0" promptText="كل المستخدمين" />
+                                    <Separator orientation="VERTICAL" />
+                                    <TextField fx:id="dispSearchField" prefWidth="200.0" promptText="بحث بالدواء أو السبب..." />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Button mnemonicParsing="false" onAction="#clearDispFilters" styleClass="button-secondary" text="مسح الفلاتر" />
+                                </HBox>
+
+                                <TableView fx:id="dispTable" VBox.vgrow="ALWAYS" styleClass="table-view">
+                                    <columns>
+                                        <TableColumn fx:id="dispIdCol" prefWidth="70.0" text="رقم" style="-fx-alignment: CENTER;" />
+                                        <TableColumn fx:id="dispDateCol" prefWidth="130.0" text="التاريخ" style="-fx-alignment: CENTER;" />
+                                        <TableColumn fx:id="dispUserCol" prefWidth="130.0" text="المستخدم (المسؤول)" style="-fx-font-weight: bold;" />
+                                        <TableColumn fx:id="dispMedCol" prefWidth="160.0" text="اسم الدواء" style="-fx-text-fill: #2980b9; -fx-font-weight: bold;" />
+                                        <TableColumn fx:id="dispBatchCol" prefWidth="90.0" text="الطبخة" style="-fx-alignment: CENTER;" />
+                                        <TableColumn fx:id="dispQtyCol" prefWidth="70.0" text="الكمية" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+                                        <TableColumn fx:id="dispCostCol" prefWidth="110.0" text="إجمالي التكلفة" />
+                                        <TableColumn fx:id="dispCompCol" prefWidth="110.0" text="تعويض المورد" style="-fx-text-fill: #27ae60;" />
+                                        <TableColumn fx:id="dispLossCol" prefWidth="110.0" text="خسارة الصيدلية" style="-fx-text-fill: #e74c3c; -fx-font-weight: bold;" />
+                                        <TableColumn fx:id="dispReasonCol" prefWidth="200.0" text="السبب" />
+                                    </columns>
+                                </TableView>
+
+                                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                                    <Label text="عرض:" style="-fx-font-weight: bold;" />
+                                    <ComboBox fx:id="dispRowsCombo" prefWidth="80.0" />
+                                    <Label text="سطراً" />
+                                    <Region HBox.hgrow="ALWAYS" />
+                                    <Pagination fx:id="dispPagination" maxPageIndicatorCount="5" pageCount="1" />
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </center>
+</BorderPane>

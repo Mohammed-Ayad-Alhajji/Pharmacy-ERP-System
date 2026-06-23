@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox nodeOrientation="RIGHT_TO_LEFT" prefHeight="500.0" prefWidth="500.0" spacing="15.0" style="-fx-background-color: #ffffff;" stylesheets="@/com/pharmacy/styles/global.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.finance.ManageCategoriesController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <children>
+        <Label text="إدارة فئات المصروفات" textFill="#2c3e50">
+            <font><Font name="System Bold" size="20.0" /></font>
+        </Label>
+        
+        <HBox spacing="10.0">
+            <children>
+                <TextField fx:id="newCategoryField" prefHeight="40.0" promptText="أدخل اسم الفئة الجديدة..." styleClass="text-field" HBox.hgrow="ALWAYS" />
+                <Button mnemonicParsing="false" onAction="#handleAddCategory" prefHeight="40.0" styleClass="button-success" text="إضافة +">
+                    <font><Font name="System Bold" size="14.0" /></font>
+                </Button>
+            </children>
+        </HBox>
+        
+        <TableView fx:id="categoriesTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="idCol" prefWidth="60.0" text="الرقم" />
+                <TableColumn fx:id="nameCol" prefWidth="250.0" text="اسم الفئة" />
+                <TableColumn fx:id="actionCol" prefWidth="120.0" text="إجراءات" />
+            </columns>
+        </TableView>
+        
+        <Button maxWidth="Infinity" mnemonicParsing="false" onAction="#handleClose" prefHeight="45.0" styleClass="button" text="إغلاق النافذة" />
+    </children>
+</VBox>

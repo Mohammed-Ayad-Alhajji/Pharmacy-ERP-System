@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane  fx:id="mainBorderPane" nodeOrientation="RIGHT_TO_LEFT" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.layouts.MainLayoutController">
+    
+    <!-- الشريط العلوي -->
+    <top>
+        <fx:include source="/com/pharmacy/views/components/Navbar.fxml" />
+    </top>
+    
+    <!-- الشريط الجانبي (سيظهر على اليمين بسبب تفعيل RTL) -->
+    <left>
+        <fx:include fx:id="sidebar" source="/com/pharmacy/views/components/Sidebar.fxml" />
+    </left>
+    
+    <!-- المنطقة المركزية (الواجهة الترحيبية الافتراضية) -->
+    <center>
+        <VBox alignment="CENTER" style="-fx-background-color: #ecf0f1;" BorderPane.alignment="CENTER">
+            <children>
+                <Label text="أهلاً بك في نظام إدارة الصيدلية" textFill="#7f8c8d">
+                    <font>
+                        <Font name="System Bold" size="28.0" />
+                    </font>
+                </Label>
+                <Label text="يرجى اختيار قسم من القائمة الجانبية للبدء." textFill="#95a5a6">
+                    <font>
+                        <Font size="18.0" />
+                    </font>
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </Label>
+            </children>
+        </VBox>
+    </center>
+    
+</BorderPane>

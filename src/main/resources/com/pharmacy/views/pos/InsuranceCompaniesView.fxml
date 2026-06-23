@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane nodeOrientation="RIGHT_TO_LEFT" prefHeight="768.0" prefWidth="1200.0" style="-fx-background-color: #f4f6f9;" stylesheets="@/com/pharmacy/styles/global.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.pos.InsuranceCompaniesController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <top>
+        <VBox spacing="5.0" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="20.0" />
+            </BorderPane.margin>
+            <children>
+                <Label text="شركات التأمين  🏥" textFill="#1e293b">
+                    <font><Font name="System Bold" size="26.0" /></font>
+                </Label>
+                <Label text="إدارة بيانات شركات التأمين المتعاقدة مع الصيدلية لتسهيل إصدار المطالبات." textFill="#64748b">
+                    <font><Font name="System Bold" size="14.0" /></font>
+                </Label>
+            </children>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="15.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 8; -fx-border-color: #cbd5e1; -fx-border-radius: 8;">
+                    <effect><DropShadow color="#0000001a" offsetY="2.0" radius="5.0" spread="0.0" /></effect>
+                    <children>
+                        <Label text="🔍 بحث سريع:" textFill="#334155">
+                            <font><Font name="System Bold" size="14.0" /></font>
+                        </Label>
+                        <TextField fx:id="searchField" prefHeight="42.0" prefWidth="320.0" promptText="ابحث باسم شركة التأمين..." style="-fx-border-color: #94a3b8; -fx-border-width: 1.5; -fx-border-radius: 6; -fx-background-radius: 6; -fx-background-color: #ffffff; -fx-padding: 0 10 0 10;" />
+
+                        <Region HBox.hgrow="ALWAYS" />
+
+                        <Button minHeight="45.0" minWidth="200.0" mnemonicParsing="false" onAction="#handleAddNewCompany" prefHeight="42.0" style="-fx-padding: 10 15; -fx-background-insets: 0;" styleClass="button-primary" text="إضافة شركة تأمين جديدة ➕">
+                            <font><Font name="System Bold" size="14.0" /></font>
+                        </Button>
+                    </children>
+                </HBox>
+
+                <VBox spacing="10.0" style="-fx-background-color: white; -fx-padding: 10; -fx-background-radius: 8; -fx-border-color: #cbd5e1; -fx-border-radius: 8;" VBox.vgrow="ALWAYS">
+                    <effect><DropShadow color="#0000001a" offsetY="3.0" radius="6.0" spread="0.0" /></effect>
+                    <children>
+                        <TableView fx:id="companiesTable" VBox.vgrow="ALWAYS">
+                            <columns>
+                                <TableColumn fx:id="idCol" prefWidth="80.0" style="-fx-alignment: CENTER;" text="الرقم" />
+                                <TableColumn fx:id="nameCol" prefWidth="250.0" style="-fx-font-weight: bold;" text="اسم الشركة" />
+                                <TableColumn fx:id="contactCol" prefWidth="200.0" style="-fx-alignment: CENTER;" text="معلومات التواصل" />
+                                <TableColumn fx:id="addressCol" prefWidth="300.0" text="العنوان" />
+                                <TableColumn fx:id="actionCol" prefWidth="200.0" style="-fx-alignment: CENTER;" text="إجراءات" />
+                            </columns>
+                        </TableView>
+                        
+                        <HBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-padding: 10 5 0 5;">
+                            <children>
+                                <Label text="عرض:" textFill="#475569"><font><Font name="System Bold" size="14.0" /></font></Label>
+                                <ComboBox fx:id="rowsPerPageCombo" prefHeight="38.0" prefWidth="85.0" style="-fx-background-color: #ffffff; -fx-border-color: #cbd5e1; -fx-border-radius: 6; -fx-background-radius: 6; -fx-font-weight: bold; -fx-text-fill: #1e293b; -fx-cursor: hand;" />
+                                <Label text="سطراً لكل صفحة" textFill="#475569"><font><Font name="System Bold" size="14.0" /></font></Label>
+
+                                <Region HBox.hgrow="ALWAYS" />
+
+                                <Pagination fx:id="pagination" maxPageIndicatorCount="5" pageCount="1" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

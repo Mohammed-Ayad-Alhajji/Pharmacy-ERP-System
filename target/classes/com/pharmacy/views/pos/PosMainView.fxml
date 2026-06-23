@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="rootPane" nodeOrientation="RIGHT_TO_LEFT" prefHeight="768.0" prefWidth="1024.0" style="-fx-background-color: #f4f6f8;" styleClass="root" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.pos.PosMainController">
+    
+    <stylesheets>
+        <URL value="@../../styles/pos.css" />
+    </stylesheets>
+
+    <padding>
+        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+    </padding>
+
+    <center>
+        <VBox spacing="10.0" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets left="15.0" />
+            </BorderPane.margin>
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <TextField fx:id="searchField" onAction="#handleBarcodeScan" prefHeight="40.0" promptText="ابحث بالباركود أو الاسم..." style="-fx-background-color: #ffffff; -fx-border-color: #dcdde1; -fx-border-radius: 3; -fx-background-radius: 3;" HBox.hgrow="ALWAYS">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                        </TextField>
+                    </children>
+                </HBox>
+                
+                <TableView fx:id="cartTable" styleClass="table-view" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="barcodeCol" prefWidth="100.0" text="الباركود" />
+                        <TableColumn fx:id="nameCol" minWidth="100.0" prefWidth="110.0" text="اسم الدواء" />
+                        <TableColumn fx:id="batchCol" prefWidth="90.0" text="رقم الدفعة" />
+                        <TableColumn fx:id="unitCol" prefWidth="90.0" text="الوحدة" />
+                        <TableColumn fx:id="priceCol" prefWidth="85.0" sortType="DESCENDING" text="السعر" />
+                        <TableColumn fx:id="quantityCol" prefWidth="80.0" text="الكمية" />
+                        <TableColumn fx:id="insuranceDiscountCol" prefWidth="110.0" text="خصم التأمين %" />
+                        <TableColumn fx:id="totalCol" prefWidth="100.0" text="الإجمالي" />
+                        <TableColumn fx:id="actionCol" prefWidth="65.0" text="حذف" />
+                    </columns>
+               <VBox.margin>
+                  <Insets right="10.0" />
+               </VBox.margin>
+                </TableView>
+            </children>
+        </VBox>
+    </center>
+
+    <right>
+        <VBox prefWidth="350.0" spacing="10.0" style="-fx-background-color: #ffffff; -fx-border-color: #dcdde1; -fx-border-radius: 4; -fx-background-radius: 4;" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </padding>
+            <children>
+                <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: #ffffff; -fx-border-color: transparent;" VBox.vgrow="ALWAYS">
+                    <content>
+                        <VBox spacing="15.0">
+                            <padding>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </padding>
+                            <children>
+                                <VBox spacing="10.0" style="-fx-background-color: #f8f9fa; -fx-border-color: #e9ecef; -fx-border-radius: 4; -fx-background-radius: 4;">
+                                    <padding>
+                                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                                    </padding>
+                                    <children>
+                                        <Label text="إعدادات الدفع" textFill="#2c3e50">
+                                            <font><Font name="System Bold" size="14.0" /></font>
+                                        </Label>
+                                        <ComboBox fx:id="paymentMethodCombo" maxWidth="Infinity" promptText="طريقة الدفع" style="-fx-pref-height: 35;" />
+                                        
+                                        <TextField fx:id="customerSearchField" managed="false" maxWidth="Infinity" promptText="اسم الزبون (الآجل)..." style="-fx-pref-height: 35;" visible="false" />
+                                        <TextField fx:id="paidAmountField" alignment="CENTER" managed="false" maxWidth="Infinity" promptText="المبلغ المدفوع (كجزء من الدين)" style="-fx-pref-height: 35;" visible="false">
+                                            <font><Font size="14.0" /></font>
+                                        </TextField>
+
+                                        <TextField fx:id="insuranceSearchField" managed="false" maxWidth="Infinity" promptText="شركة التأمين..." style="-fx-pref-height: 35;" visible="false" />
+                                        <TextField fx:id="insuranceApprovalField" managed="false" maxWidth="Infinity" promptText="كود موافقة التأمين" style="-fx-pref-height: 35;" visible="false" />
+                                        <Button fx:id="attachPrescriptionButton" managed="false" maxWidth="Infinity" onAction="#handleAttachPrescription" style="-fx-background-color: #ecf0f1; -fx-text-fill: #2c3e50; -fx-border-color: #bdc3c7; -fx-border-radius: 3; -fx-pref-height: 35;" text="إرفاق وصفة طبية" visible="false" />
+                                    </children>
+                                </VBox>
+                                
+                                <Separator style="-fx-background-color: #ecf0f1;" />
+                                
+                                <GridPane hgap="10.0" vgap="12.0">
+                                    <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="140.0" />
+                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
+                                    </columnConstraints>
+                                    <rowConstraints>
+                                        <RowConstraints />
+                                        <RowConstraints />
+                                        <RowConstraints />
+                                        <RowConstraints />
+                                    </rowConstraints>
+                                    <children>
+                                        <Label text="إجمالي الفاتورة:" textFill="#2c3e50" GridPane.rowIndex="0">
+                                            <font><Font name="System Bold" size="13.0" /></font>
+                                        </Label>
+                                        <Label fx:id="totalAmountLabel" text="0.00" textFill="#2c3e50" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
+                                            <font><Font name="System Bold" size="14.0" /></font>
+                                        </Label>
+                                        
+                                        <Label text="ذمة الزبون (آجل):" textFill="#8e44ad" GridPane.rowIndex="1">
+                                            <font><Font name="System Bold" size="13.0" /></font>
+                                        </Label>
+                                        <Label fx:id="totalCustomerDebtLabel" text="0.00" textFill="#8e44ad" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1">
+                                            <font><Font name="System Bold" size="14.0" /></font>
+                                        </Label>
+
+                                        <Label text="ذمة التأمين:" textFill="#2980b9" GridPane.rowIndex="2">
+                                            <font><Font name="System Bold" size="13.0" /></font>
+                                        </Label>
+                                        <Label fx:id="totalInsuranceDebtLabel" text="0.00" textFill="#2980b9" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+                                            <font><Font name="System Bold" size="14.0" /></font>
+                                        </Label>
+                                        
+                                        <Label text="خصم إضافي:" textFill="#2c3e50" GridPane.rowIndex="3">
+                                            <font><Font name="System Bold" size="13.0" /></font>
+                                        </Label>
+                                        <TextField fx:id="discountField" alignment="CENTER_RIGHT" prefHeight="30.0" style="-fx-text-fill: #2c3e50;" text="0.00" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                    </children>
+                                </GridPane>
+                            </children>
+                        </VBox>
+                    </content>
+                </ScrollPane>
+                
+                <Separator style="-fx-background-color: #dcdde1;" />
+                
+                <VBox spacing="15.0">
+                    <children>
+                        <VBox alignment="CENTER" spacing="5.0">
+                            <children>
+                                <Label text="الصافي المطلوب من الزبون" textFill="#7f8c8d">
+                                    <font><Font name="System Bold" size="15.0" /></font>
+                                </Label>
+                                <Label fx:id="netTotalLabel" text="0.00" textFill="#27ae60">
+                                    <font><Font name="System Bold" size="38.0" /></font>
+                                </Label>
+                            </children>
+                        </VBox>
+
+                        <HBox alignment="CENTER_LEFT">
+                            <children>
+                                <Label fx:id="changeTitleLabel" text="الدين المسجل (آجل):" textFill="#2c3e50">
+                                    <font><Font name="System Bold" size="15.0" /></font>
+                                </Label>
+                                <Region HBox.hgrow="ALWAYS" />
+                                <Label fx:id="changeAmountLabel" text="0.00" textFill="#c0392b">
+                                    <font><Font name="System Bold" size="18.0" /></font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        
+                        <VBox spacing="10.0">
+                            <children>
+                                <Button fx:id="checkoutButton" maxWidth="Infinity" onAction="#handleCheckout" prefHeight="45.0" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-background-radius: 4; -fx-cursor: hand;" text="حفظ وإصدار الفاتورة">
+                                    <font><Font name="System Bold" size="16.0" /></font>
+                                </Button>
+                                <Button fx:id="clearCartButton" maxWidth="Infinity" onAction="#handleClearCart" prefHeight="35.0" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-background-radius: 4; -fx-cursor: hand;" text="تفريغ السلة">
+                                    <font><Font name="System Bold" size="14.0" /></font>
+                                </Button>
+                            </children>
+                        </VBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </right>
+</BorderPane>

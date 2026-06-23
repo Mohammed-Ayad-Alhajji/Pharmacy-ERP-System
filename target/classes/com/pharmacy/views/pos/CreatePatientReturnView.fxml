@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20" stylesheets="@/com/pharmacy/styles/global.css" nodeOrientation="RIGHT_TO_LEFT" prefWidth="1250" prefHeight="700" style="-fx-background-color: #f4f6f8;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.pos.CreatePatientReturnController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label text="إنشاء مرتجع مريض جديد" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label text="رقم الفاتورة (Sale ID):" style="-fx-font-weight: bold;" />
+        <TextField fx:id="txtSaleId" promptText="أدخل رقم الفاتورة..." prefWidth="150" />
+        <Button text="جلب الفاتورة" onAction="#handleFetchInvoice" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-cursor: hand;" prefWidth="100" />
+    </HBox>
+
+    <HBox spacing="40" alignment="CENTER_LEFT" style="-fx-background-color: #ecf0f1; -fx-padding: 15; -fx-background-radius: 5; -fx-border-color: #dcdde1; -fx-border-radius: 5;">
+        <HBox spacing="10">
+            <Label text="الزبون المشتري:" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;" />
+            <Label fx:id="lblCustomer" text="---" style="-fx-font-weight: bold; -fx-text-fill: #2980b9;" />
+        </HBox>
+        <HBox spacing="10">
+            <Label text="تاريخ البيع:" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;" />
+            <Label fx:id="lblDate" text="---" style="-fx-font-weight: bold;" />
+        </HBox>
+        <Region HBox.hgrow="ALWAYS" />
+        <HBox spacing="10">
+            <Label text="إجمالي الفاتورة الأساسي:" style="-fx-font-weight: bold; -fx-text-fill: #7f8c8d;" />
+            <Label fx:id="lblTotalInvoice" text="0.00 ل.س" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+        </HBox>
+    </HBox>
+
+    <TableView fx:id="tvReturnItems" VBox.vgrow="ALWAYS" editable="true" style="-fx-background-color: white; -fx-border-color: #dcdde1; -fx-border-radius: 5;">
+        <columns>
+            <TableColumn fx:id="colIndex" text="#" prefWidth="40" style="-fx-alignment: CENTER;" editable="false"/>
+            <TableColumn fx:id="colMedicine" text="اسم الدواء" prefWidth="180" style="-fx-font-weight: bold;" editable="false"/>
+            <TableColumn fx:id="colUnit" text="الوحدة" prefWidth="80" style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-text-fill: #e67e22;" editable="false"/>
+            <TableColumn fx:id="colBatch" text="التشغيلة" prefWidth="90" style="-fx-alignment: CENTER;" editable="false"/>
+            
+            <TableColumn fx:id="colOriginalQty" text="العدد الكلي" prefWidth="75" style="-fx-alignment: CENTER;" editable="false"/>
+            <TableColumn fx:id="colPastReturnQty" text="مرتجع سابق" prefWidth="85" style="-fx-alignment: CENTER; -fx-text-fill: #e67e22;" editable="false"/>
+            <TableColumn fx:id="colAvailableQty" text="المتاح للإرجاع" prefWidth="95" style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-text-fill: #2980b9;" editable="false"/>
+            
+            <TableColumn fx:id="colInsuranceCompany" text="شركة التأمين" prefWidth="130" style="-fx-alignment: CENTER;" editable="false"/>
+            <TableColumn fx:id="colInsuranceShare" text="تغطية التأمين/وحدة" prefWidth="120" style="-fx-alignment: CENTER; -fx-text-fill: #8e44ad;" editable="false"/>
+            
+            <TableColumn fx:id="colPatientUnitPrice" text="سعر الوحدة (للمريض)" prefWidth="125" style="-fx-alignment: CENTER;" editable="false"/>
+            <TableColumn fx:id="colReturnQty" text="الكمية المراد إرجاعها" prefWidth="135" style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-background-color: #fff3cd; -fx-text-fill: #856404;" editable="true"/>
+            <TableColumn fx:id="colRefundAmount" text="مبلغ الاسترداد" prefWidth="110" style="-fx-alignment: CENTER-RIGHT; -fx-font-weight: bold; -fx-text-fill: #e74c3c;" editable="false"/>
+        </columns>
+    </TableView>
+
+    <HBox alignment="CENTER_RIGHT" spacing="20" style="-fx-background-color: #f8f9fa; -fx-padding: 15; -fx-border-color: #dcdde1; -fx-background-radius: 5;">
+        <VBox spacing="5" alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
+            <Label text="سبب الإرجاع:" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;" />
+            <TextField fx:id="txtReason" promptText="أدخل سبب المرتجع (اختياري)..." prefWidth="300" />
+        </VBox>
+        <VBox alignment="CENTER_RIGHT">
+            <Label text="إجمالي الاسترداد النقدي (من الدرج):" style="-fx-font-weight: bold; -fx-font-size: 14px;" />
+            <Label fx:id="lblTotalRefund" text="0.00 ل.س" style="-fx-font-weight: bold; -fx-font-size: 24px; -fx-text-fill: #e74c3c;" />
+        </VBox>
+        <Button text="تأكيد ودفع الاسترداد" onAction="#handleSaveReturn" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px; -fx-padding: 10 25; -fx-cursor: hand;" />
+    </HBox>
+</VBox>

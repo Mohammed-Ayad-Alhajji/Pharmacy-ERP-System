@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="20" stylesheets="@/com/pharmacy/styles/global.css" nodeOrientation="RIGHT_TO_LEFT" prefWidth="1050" prefHeight="750" style="-fx-background-color: #f4f6f8;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.pos.SaleDetailsController">
+    <padding>
+        <Insets top="25" right="25" bottom="25" left="25"/>
+    </padding>
+
+    <HBox alignment="CENTER" spacing="10">
+        <Label text="البيان التفصيلي لفاتورة المبيعات" style="-fx-font-size: 26px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="lblPaymentStatus" text="---" style="-fx-font-weight: bold; -fx-font-size: 18px; -fx-padding: 5 15; -fx-background-radius: 5; -fx-border-radius: 5;" />
+        <Button text="تصدير Excel" onAction="#handleExportExcel" style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-height: 35; -fx-cursor: hand;" />
+        
+        <Button text="تصدير PDF" onAction="#handleExportPDF" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-pref-height: 35; -fx-cursor: hand;" />
+        
+    </HBox>
+
+    <HBox spacing="20">
+        <VBox spacing="10" HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 8; -fx-border-color: #dcdde1; -fx-border-radius: 8;">
+            <Label text="معلومات الفاتورة" style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #34495e; -fx-border-bottom-color: #ecf0f1; -fx-border-bottom-width: 1;"/>
+            <GridPane vgap="10" hgap="15">
+                <Label text="رقم الفاتورة (ID):" style="-fx-text-fill: #7f8c8d; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label fx:id="lblSaleId" text="---" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                
+                <Label text="التاريخ والوقت:" style="-fx-text-fill: #7f8c8d; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label fx:id="lblDate" text="---" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                
+                <Label text="الكاشير:" style="-fx-text-fill: #7f8c8d; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Label fx:id="lblCashier" text="---" style="-fx-font-weight: bold; -fx-text-fill: #2980b9;" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            </GridPane>
+        </VBox>
+
+        <VBox spacing="10" HBox.hgrow="ALWAYS" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 8; -fx-border-color: #dcdde1; -fx-border-radius: 8;">
+            <Label text="معلومات الزبون والتأمين" style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #34495e; -fx-border-bottom-color: #ecf0f1; -fx-border-bottom-width: 1;"/>
+            <GridPane vgap="10" hgap="15">
+                <Label text="الزبون المشتري:" style="-fx-text-fill: #7f8c8d; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <Label fx:id="lblCustomer" text="---" style="-fx-font-weight: bold; -fx-text-fill: #2980b9;" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                
+                <Label text="الطبيب / المريض:" style="-fx-text-fill: #7f8c8d; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <Label fx:id="lblPrescription" text="---" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                
+                <Label text="شركة التأمين:" style="-fx-text-fill: #7f8c8d; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <Label fx:id="lblInsurance" text="---" style="-fx-font-weight: bold; -fx-text-fill: #8e44ad;" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            </GridPane>
+        </VBox>
+    </HBox>
+
+    <TableView fx:id="tvDetails" VBox.vgrow="ALWAYS" style="-fx-background-color: white; -fx-border-color: #dcdde1; -fx-border-radius: 5;">
+        <columns>
+            <TableColumn fx:id="colIndex" text="#" prefWidth="40" style="-fx-alignment: CENTER;" />
+            <TableColumn fx:id="colItemName" text="اسم الدواء" prefWidth="230" style="-fx-font-weight: bold;"/>
+            <TableColumn fx:id="colItemBatch" text="التشغيلة" prefWidth="100" style="-fx-alignment: CENTER;" />
+            
+            <TableColumn fx:id="colItemUnit" text="الوحدة" prefWidth="80" style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-text-fill: #e67e22;" />
+            
+            <TableColumn fx:id="colItemQty" text="الكمية" prefWidth="70" style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-text-fill: #2980b9;" />
+            <TableColumn fx:id="colItemReturned" text="مرتجع" prefWidth="60" style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-text-fill: #e74c3c;" />
+            <TableColumn fx:id="colItemPrice" text="سعر الوحدة" prefWidth="100" style="-fx-alignment: CENTER;" />
+            <TableColumn fx:id="colItemSubtotal" text="المجموع (قبل التأمين)" prefWidth="140" style="-fx-alignment: CENTER;" />
+            <TableColumn fx:id="colItemInsuranceShare" text="تغطية التأمين" prefWidth="110" style="-fx-alignment: CENTER; -fx-text-fill: #8e44ad;" />
+            <TableColumn fx:id="colItemPatientShare" text="المجموع" prefWidth="120" style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-text-fill: #27ae60;" />
+        </columns>
+    </TableView>
+
+    <HBox spacing="30" alignment="CENTER_RIGHT">
+        
+        <VBox fx:id="vboxDebts" alignment="CENTER" spacing="5" style="-fx-background-color: #fff3cd; -fx-padding: 15; -fx-background-radius: 8; -fx-border-color: #ffeeba; -fx-border-radius: 8;">
+            <Label text="الذمم المالية المعلقة" style="-fx-font-weight: bold; -fx-text-fill: #856404; -fx-font-size: 14px;"/>
+            <Separator style="-fx-background-color: #ffeeba;"/>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="ذمة الزبون:" style="-fx-text-fill: #856404;"/>
+                <Label fx:id="lblCustomerDebt" text="0.00 ل.س" style="-fx-font-weight: bold; -fx-text-fill: #e74c3c;"/>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label text="ذمة التأمين:" style="-fx-text-fill: #856404;"/>
+                <Label fx:id="lblInsuranceDebt" text="0.00 ل.س" style="-fx-font-weight: bold; -fx-text-fill: #e74c3c;"/>
+            </HBox>
+        </VBox>
+
+        <Region HBox.hgrow="ALWAYS" />
+
+        <VBox spacing="8" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 8; -fx-border-color: #dcdde1; -fx-border-radius: 8; -fx-min-width: 350;">
+            
+            <HBox alignment="CENTER_LEFT">
+                <Label text="الإجمالي الأساسي:" style="-fx-text-fill: #7f8c8d; -fx-font-weight: bold;"/>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label fx:id="lblTotalAmount" text="0.00 ل.س" style="-fx-font-weight: bold;"/>
+            </HBox>
+            
+            <HBox alignment="CENTER_LEFT">
+                <Label text="تغطية شركة التأمين (-):" style="-fx-text-fill: #8e44ad; -fx-font-weight: bold;"/>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label fx:id="lblTotalInsurance" text="0.00 ل.س" style="-fx-font-weight: bold; -fx-text-fill: #8e44ad;"/>
+            </HBox>
+            
+            <HBox alignment="CENTER_LEFT">
+                <Label text="الخصم الممنوح (-):" style="-fx-text-fill: #e74c3c; -fx-font-weight: bold;"/>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label fx:id="lblDiscount" text="0.00 ل.س" style="-fx-font-weight: bold; -fx-text-fill: #e74c3c;"/>
+            </HBox>
+
+            <HBox alignment="CENTER_LEFT" style="-fx-background-color: #f8f9fa; -fx-padding: 5; -fx-background-radius: 3;">
+                <Label text="التسوية الجبرية لأقرب 5 ليرات (+):" style="-fx-text-fill: #e67e22; -fx-font-weight: bold;"/>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label fx:id="lblRounding" text="0.00 ل.س" style="-fx-font-weight: bold; -fx-text-fill: #e67e22;"/>
+            </HBox>
+
+            <Separator />
+
+            <HBox alignment="CENTER_LEFT">
+                <Label text="الصافي المطلوب من المريض:" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label fx:id="lblNetTotal" text="0.00 ل.س" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+            </HBox>
+            
+            <HBox alignment="CENTER_LEFT">
+                <Label text="إجمالي ما دفعه المريض (وقت الشراء + دفعات لاحقة): " style="-fx-font-size: 13px; -fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label fx:id="lblPaidAmount" text="0.00 ل.س" style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #27ae60;"/>
+            </HBox>
+        </VBox>
+    </HBox>
+
+    <HBox alignment="CENTER_RIGHT" spacing="10">
+        <Button text="إغلاق الشاشة" onAction="#handleClose" style="-fx-background-color: #ecf0f1; -fx-text-fill: #2c3e50; -fx-border-color: #bdc3c7; -fx-border-radius: 4; -fx-font-weight: bold; -fx-pref-width: 120; -fx-pref-height: 35; -fx-cursor: hand;" />
+    </HBox>
+</VBox>

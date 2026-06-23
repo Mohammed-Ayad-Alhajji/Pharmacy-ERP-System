@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" stylesheets="@/com/pharmacy/styles/global.css" nodeOrientation="RIGHT_TO_LEFT" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.pos.SalesManagementController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label text="سجل المبيعات والفواتير" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+        <Region HBox.hgrow="ALWAYS" />
+    </HBox>
+
+    <HBox spacing="10" alignment="CENTER_LEFT" style="-fx-background-color: #f8f9fa; -fx-padding: 10; -fx-background-radius: 5; -fx-border-color: #dcdde1; -fx-border-radius: 5;">
+        <TextField fx:id="txtSearch" promptText="رقم الفاتورة / الزبون..." prefWidth="200" />
+        
+        <Separator orientation="VERTICAL" />
+        
+        <HBox fx:id="hboxManagerFilters" alignment="CENTER_LEFT" spacing="10">
+            <Label text="من:" style="-fx-font-weight: bold;"/>
+            <DatePicker fx:id="dpStart" prefWidth="130" />
+            <Label text="إلى:" style="-fx-font-weight: bold;"/>
+            <DatePicker fx:id="dpEnd" prefWidth="130" />
+            <Separator orientation="VERTICAL" />
+            <MenuButton fx:id="mbCashier" text="تصفية الموظفين" prefWidth="150" />
+            <Separator orientation="VERTICAL" />
+        </HBox>
+        
+        <ComboBox fx:id="cbPaymentMethod" promptText="طريقة الدفع" prefWidth="120" />
+        
+        <Button text="بحث" onAction="#handleSearch" style="-fx-background-color: #2980b9; -fx-text-fill: white; -fx-font-weight: bold;" prefWidth="80" />
+        <Button text="تحديث" onAction="#loadInitialData" styleClass="btn-secondary" prefWidth="80" />
+    </HBox>
+
+    <VBox spacing="5" VBox.vgrow="ALWAYS">
+        <TableView fx:id="tvSales" VBox.vgrow="ALWAYS" styleClass="main-table">
+            <columns>
+                <TableColumn fx:id="colSaleId" text="رقم الفاتورة" prefWidth="90" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+                <TableColumn fx:id="colDate" text="التاريخ والوقت" prefWidth="140" style="-fx-alignment: CENTER;" />
+                <TableColumn fx:id="colCashier" text="الكاشير" prefWidth="130" />
+                <TableColumn fx:id="colCustomer" text="الزبون" prefWidth="140" />
+                <TableColumn fx:id="colPaymentMethod" text="طريقة الدفع" prefWidth="100" style="-fx-alignment: CENTER;" />
+                <TableColumn fx:id="colTotal" text="الإجمالي" prefWidth="110" style="-fx-alignment: CENTER-RIGHT; -fx-font-weight: bold; -fx-text-fill: #27ae60;" />
+                <TableColumn fx:id="colStatus" text="الحالة" prefWidth="110" style="-fx-alignment: CENTER;" />
+                <TableColumn fx:id="colActions" text="الإجراءات" prefWidth="90" style="-fx-alignment: CENTER;" />
+            </columns>
+            <placeholder>
+                <Label text="لا توجد فواتير مطابقة لخيارات البحث" style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px;"/>
+            </placeholder>
+        </TableView>
+    </VBox>
+</VBox>

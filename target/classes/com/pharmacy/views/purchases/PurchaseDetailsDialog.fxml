@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" stylesheets="@/com/pharmacy/styles/global.css" prefWidth="950" prefHeight="650" 
+      nodeOrientation="RIGHT_TO_LEFT" xmlns="http://javafx.com/javafx/17" 
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.purchases.PurchaseDetailsController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="10">
+        <Label text="البيان التفصيلي لفاتورة المشتريات" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button text="تصدير PDF" onAction="#handleExportPDF" style="-fx-background-color: #e74c3c; -fx-text-fill: white;" />
+        <Button text="تصدير Excel" onAction="#handleExportExcel" style="-fx-background-color: #27ae60; -fx-text-fill: white;" />
+    </HBox>
+
+    <GridPane hgap="30" vgap="12" style="-fx-background-color: #ffffff; -fx-padding: 20; -fx-background-radius: 8; -fx-border-color: #dcdde1; -fx-border-radius: 8;">
+        <columnConstraints>
+            <ColumnConstraints halignment="RIGHT" minWidth="120" />
+            <ColumnConstraints halignment="RIGHT" minWidth="200" />
+            <ColumnConstraints halignment="RIGHT" minWidth="120" />
+            <ColumnConstraints halignment="RIGHT" minWidth="200" />
+        </columnConstraints>
+        
+        <Label text="رقم الفاتورة:" style="-fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <Label fx:id="lblPurchaseId" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+
+        <Label text="رقم فاتورة المورد:" style="-fx-font-weight: bold;" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
+        <Label fx:id="lblSupplierInvoice" GridPane.columnIndex="3" GridPane.rowIndex="0"/>
+
+        <Label text="اسم المورد:" style="-fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <Label fx:id="lblSupplierName" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+        <Label text="تاريخ الفاتورة:" style="-fx-font-weight: bold;" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+        <Label fx:id="lblPurchaseDate" GridPane.columnIndex="3" GridPane.rowIndex="1"/>
+
+        <Label text="الإجمالي الأساسي:" style="-fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <Label fx:id="lblTotalCost" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+        <Label text="إجمالي المرتجعات:" style="-fx-font-weight: bold;" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
+        <Label fx:id="lblTotalReturns" style="-fx-text-fill: #e74c3c; -fx-font-weight: bold;" GridPane.columnIndex="3" GridPane.rowIndex="2"/>
+
+        <Label text="الصافي النهائي:" style="-fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
+        <Label fx:id="lblNetTotal" style="-fx-text-fill: #27ae60; -fx-font-weight: bold; -fx-font-size: 15px;" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+
+        <Label text="المدفوعات السابقة:" style="-fx-font-weight: bold;" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+        <Label fx:id="lblTotalPaid" style="-fx-text-fill: #2980b9; -fx-font-weight: bold; -fx-font-size: 15px;" GridPane.columnIndex="3" GridPane.rowIndex="3"/>
+
+        <Label text="الرصيد المتبقي (ذمة):" style="-fx-font-weight: bold; -fx-font-size: 15px;" GridPane.columnIndex="0" GridPane.rowIndex="4"/>
+        <Label fx:id="lblRemainingBalance" style="-fx-font-weight: bold; -fx-font-size: 16px;" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+
+        <Label text="حالة الدفع:" style="-fx-font-weight: bold;" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
+        <Label fx:id="lblPaymentStatus" GridPane.columnIndex="3" GridPane.rowIndex="4"/>
+    </GridPane>
+
+    <TableView fx:id="tvDetails" VBox.vgrow="ALWAYS" styleClass="main-table">
+        <columns>
+            <TableColumn fx:id="colIndex" text="#" prefWidth="40" />
+            <TableColumn fx:id="colBatchId" text="الطبخة/الدفعة" prefWidth="120" />
+            <TableColumn fx:id="colOriginalQty" text="الكمية الأساسية" prefWidth="100" />
+            <TableColumn fx:id="colReturnedQty" text="المرتجع" prefWidth="80" style="-fx-text-fill: #e74c3c; -fx-font-weight: bold;" />
+            <TableColumn fx:id="colNetQty" text="الصافي" prefWidth="80" style="-fx-text-fill: #27ae60; -fx-font-weight: bold;" />
+            <TableColumn fx:id="colBonus" text="البونص" prefWidth="80" />
+            <TableColumn fx:id="colBoxCost" text="سعر العلبة" prefWidth="120" />
+            <TableColumn fx:id="colNetSubTotal" text="المجموع الصافي" prefWidth="130" />
+        </columns>
+    </TableView>
+
+    <HBox alignment="CENTER_LEFT" spacing="15">
+        <Label text="* ملاحظة: المجموع الصافي يمثل القيمة الفعلية بعد خصم المرتجعات." style="-fx-font-style: italic; -fx-text-fill: #7f8c8d;" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Button text="إغلاق" onAction="#handleClose" styleClass="btn-secondary" prefWidth="100"/>
+    </HBox>
+</VBox>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane nodeOrientation="RIGHT_TO_LEFT" prefHeight="768.0" prefWidth="1280.0" style="-fx-background-color: #f4f6f9;" stylesheets="@/com/pharmacy/styles/global.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.reports.FinancialReportMainController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="15.0" style="-fx-background-color: white; -fx-padding: 15; -fx-background-radius: 10; -fx-border-color: #e0e0e0; -fx-border-radius: 10;">
+            <BorderPane.margin><Insets bottom="20.0" /></BorderPane.margin>
+            <children>
+                <Label text="التقرير المالي الشامل (Executive Dashboard)" textFill="#2c3e50">
+                    <font><Font name="System Bold" size="22.0" /></font>
+                </Label>
+                <Region HBox.hgrow="ALWAYS" />
+                <Label text="من تاريخ:" style="-fx-font-weight: bold; -fx-font-size: 14px;" />
+                <DatePicker fx:id="dpStartDate" prefWidth="140.0" />
+                <Label text="إلى تاريخ:" style="-fx-font-weight: bold; -fx-font-size: 14px;" />
+                <DatePicker fx:id="dpEndDate" prefWidth="140.0" />
+                <Button fx:id="btnGenerate" mnemonicParsing="false" onAction="#handleGenerateReport" style="-fx-background-color: #2c3e50; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold; -fx-padding: 8 20; -fx-cursor: hand;" text="توليد التقرير 📊" />
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="25.0">
+            <HBox spacing="20.0" alignment="CENTER">
+                
+                <VBox prefWidth="300.0" style="-fx-background-color: linear-gradient(to bottom right, #2980b9, #6dd5ed); -fx-background-radius: 15; -fx-padding: 20;" HBox.hgrow="ALWAYS">
+                    <effect><DropShadow color="#00000033" radius="10" spread="0.1" offsetY="5" /></effect>
+                    <Label text="صافي المبيعات الإيرادات" textFill="#ecf0f1" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                    <Region VBox.vgrow="ALWAYS" minHeight="10" />
+                    <Label fx:id="lblNetSales" text="0 ل.س" textFill="WHITE" style="-fx-font-size: 32px; -fx-font-weight: bold;" />
+                    <HBox spacing="10" style="-fx-padding: 10 0 0 0; -fx-opacity: 0.85;">
+                        <Label fx:id="lblGrossSales" text="الخام: 0" textFill="WHITE" style="-fx-font-size: 12px;" />
+                        <Label text="|" textFill="WHITE" style="-fx-font-size: 12px;" />
+                        <Label fx:id="lblTotalReturns" text="مرتجعات: 0" textFill="#ffcccc" style="-fx-font-size: 12px; -fx-font-weight: bold;" />
+                    </HBox>
+                </VBox>
+
+                <VBox prefWidth="300.0" style="-fx-background-color: linear-gradient(to bottom right, #f39c12, #f1c40f); -fx-background-radius: 15; -fx-padding: 20;" HBox.hgrow="ALWAYS">
+                    <effect><DropShadow color="#00000033" radius="10" spread="0.1" offsetY="5" /></effect>
+                    <Label text="تكلفة البضاعة المباعة (COGS)" textFill="#fff3e0" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                    <Region VBox.vgrow="ALWAYS" minHeight="10" />
+                    <Label fx:id="lblTotalCOGS" text="0 ل.س" textFill="WHITE" style="-fx-font-size: 32px; -fx-font-weight: bold;" />
+                    <Label text="تكلفة الشراء الفعلية للكميات المباعة" textFill="WHITE" style="-fx-font-size: 12px; -fx-padding: 10 0 0 0; -fx-opacity: 0.8;" />
+                </VBox>
+
+                <VBox prefWidth="300.0" style="-fx-background-color: linear-gradient(to bottom right, #e74c3c, #ff7979); -fx-background-radius: 15; -fx-padding: 20;" HBox.hgrow="ALWAYS">
+                    <effect><DropShadow color="#00000033" radius="10" spread="0.1" offsetY="5" /></effect>
+                    <Label text="المصاريف والخسائر التشغيلية" textFill="#fdebed" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                    <Region VBox.vgrow="ALWAYS" minHeight="10" />
+                    <Label fx:id="lblTotalDeductions" text="0 ل.س" textFill="WHITE" style="-fx-font-size: 32px; -fx-font-weight: bold;" />
+                    <Label text="إجمالي (مصروفات نقدية + خسائر إتلاف)" textFill="WHITE" style="-fx-font-size: 12px; -fx-padding: 10 0 0 0; -fx-opacity: 0.8;" />
+                </VBox>
+
+                <VBox prefWidth="300.0" style="-fx-background-color: linear-gradient(to bottom right, #16a085, #2ecc71); -fx-background-radius: 15; -fx-padding: 20;" HBox.hgrow="ALWAYS">
+                    <effect><DropShadow color="#00000033" radius="10" spread="0.1" offsetY="5" /></effect>
+                    <Label text="صافي الربح الفعلي" textFill="#e8f8f5" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+                    <Region VBox.vgrow="ALWAYS" minHeight="10" />
+                    <Label fx:id="lblNetProfit" text="0 ل.س" textFill="WHITE" style="-fx-font-size: 36px; -fx-font-weight: bold;" />
+                    <Label text="جاهز للسحب أو إعادة الاستثمار" textFill="WHITE" style="-fx-font-size: 12px; -fx-padding: 10 0 0 0; -fx-opacity: 0.8;" />
+                </VBox>
+                
+            </HBox>
+
+            <TabPane tabClosingPolicy="UNAVAILABLE" styleClass="main-tab-pane" VBox.vgrow="ALWAYS">
+                <tabs>
+                    <Tab text="الأدوية الأكثر مبيعاً وربحية 💊">
+                        <content>
+                            <VBox spacing="10.0" style="-fx-background-color: white; -fx-padding: 15; -fx-border-color: #e0e0e0; -fx-border-width: 0 1 1 1;">
+                                <Label text="أفضل 50 دواء تحقيقاً للأرباح خلال الفترة المحددة" textFill="#7f8c8d" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+                                <TableView fx:id="tvTopMedicines" VBox.vgrow="ALWAYS" styleClass="main-table">
+                                    <columns>
+                                        <TableColumn fx:id="colMedIndex" prefWidth="50.0" text="#" style="-fx-alignment: CENTER;" />
+                                        <TableColumn fx:id="colMedName" prefWidth="350.0" text="اسم الدواء" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                                        <TableColumn fx:id="colMedQty" prefWidth="150.0" text="الكمية المباعة" style="-fx-alignment: CENTER; -fx-font-weight: bold;" />
+                                        <TableColumn fx:id="colMedRevenue" prefWidth="200.0" text="إجمالي الإيراد" style="-fx-alignment: CENTER;" />
+                                        <TableColumn fx:id="colMedProfit" prefWidth="200.0" text="صافي الربح المحقق" style="-fx-alignment: CENTER; -fx-font-weight: bold; -fx-text-fill: #27ae60;" />
+                                    </columns>
+                                </TableView>
+                            </VBox>
+                        </content>
+                    </Tab>
+
+                    <Tab text="تفصيل المصاريف والخسائر 📉">
+                        <content>
+                            <HBox spacing="20" style="-fx-background-color: white; -fx-padding: 25; -fx-border-color: #e0e0e0; -fx-border-width: 0 1 1 1;">
+                                <VBox spacing="15" HBox.hgrow="ALWAYS">
+                                    <Label text="أين ذهبت الأموال المخصومة؟ (المصاريف التشغيلية)" style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #e74c3c;" />
+                                    <Separator />
+                                    <GridPane hgap="20" vgap="15">
+                                        <Label text="إجمالي المصروفات النقدية (كهرباء، رواتب، نثريات):" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-size: 16px;" />
+                                        <Label fx:id="lblDetailExpenses" text="0 ل.س" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                                        
+                                        <Label text="الخسارة الفعلية من الإتلاف (بعد تعويض الموردين):" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-size: 16px;" />
+                                        <Label fx:id="lblDetailDisposals" text="0 ل.س" GridPane.columnIndex="1" GridPane.rowIndex="1" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+                                    </GridPane>
+                                </VBox>
+                            </HBox>
+                        </content>
+                    </Tab>
+
+                    <Tab text="تقييم المستودع الحالي 📦">
+                        <content>
+                            <VBox alignment="CENTER" spacing="20" style="-fx-background-color: white; -fx-padding: 25; -fx-border-color: #e0e0e0; -fx-border-width: 0 1 1 1;">
+                                <Label text="رأس المال المجمد (قيمة البضاعة الموجودة الآن على الرفوف بسعر الشراء)" style="-fx-font-size: 18px; -fx-text-fill: #7f8c8d;" />
+                                <Label fx:id="lblInventoryValue" text="0 ل.س" style="-fx-font-size: 60px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+                                <Label text="ملاحظة: هذا الرقم يمثل المخزون الفعلي باللحظة الحالية ولا يتأثر بفلاتر التاريخ العلوية." style="-fx-font-size: 14px; -fx-text-fill: #95a5a6;" />
+                            </VBox>
+                        </content>
+                    </Tab>
+                </tabs>
+            </TabPane>
+        </VBox>
+    </center>
+</BorderPane>

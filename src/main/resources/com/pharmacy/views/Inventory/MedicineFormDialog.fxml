@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox nodeOrientation="RIGHT_TO_LEFT" prefWidth="600.0" spacing="15.0" styleClass="modal-dialog" stylesheets="@/com/pharmacy/styles/global.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.inventory.MedicineFormController">
+    <padding>
+        <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
+    </padding>
+    <children>
+        <Label fx:id="formTitleLabel" text="إضافة دواء جديد" textFill="#2c3e50">
+            <font><Font name="System Bold" size="20.0" /></font>
+        </Label>
+        <Separator prefWidth="200.0" />
+
+        <GridPane hgap="15.0" vgap="15.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            </rowConstraints>
+            <children>
+                <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label text="الباركود (اختياري)" />
+                    <TextField fx:id="barcodeField" promptText="امسح الباركود هنا" />
+                </VBox>
+                <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label text="التصنيف *" />
+                    <ComboBox fx:id="categoryCombo" maxWidth="Infinity" />
+                </VBox>
+
+                <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <Label text="الاسم التجاري *" />
+                    <TextField fx:id="brandNameField" promptText="مثال: Panadol Extra" />
+                </VBox>
+                <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Label text="الاسم العلمي / المادة الفعالة *" />
+                    <TextField fx:id="genericNameField" promptText="مثال: Paracetamol" />
+                </VBox>
+
+                <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                    <Label text="الشكل الصيدلاني" />
+                    <TextField fx:id="dosageFormField" promptText="أقراص، شراب، كبسول..." />
+                </VBox>
+                <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <Label text="العبوة تحتوي على (كم ظرف؟) *" />
+                    <TextField fx:id="conversionFactorField" promptText="مثال: 2" />
+                </VBox>
+
+                <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                    <Label text="سعر مبيع العلبة *" textFill="#e67e22"><font><Font name="System Bold" size="12.0" /></font></Label>
+                    <TextField fx:id="boxPriceField" promptText="0.00" />
+                </VBox>
+                <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                    <Label text="سعر مبيع الظرف/الحبة *" textFill="#e67e22"><font><Font name="System Bold" size="12.0" /></font></Label>
+                    <TextField fx:id="unitPriceField" promptText="0.00" />
+                </VBox>
+
+                <VBox spacing="5.0" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                    <Label text="حد المخزون الأدنى (النواقص) *" />
+                    <TextField fx:id="minStockField" promptText="الافتراضي: 5" />
+                </VBox>
+                <VBox spacing="5.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                    <Label text="مكان الرف (اختياري)" />
+                    <TextField fx:id="shelfLocationField" promptText="مثال: A1-02" />
+                </VBox>
+            </children>
+        </GridPane>
+
+        <Separator prefWidth="200.0" />
+        
+        <HBox spacing="20.0">
+            <children>
+                <CheckBox fx:id="prescriptionCheck" mnemonicParsing="false" text="يحتاج وصفة طبية (روشتة)" />
+                <CheckBox fx:id="activeCheck" mnemonicParsing="false" text="متاح للبيع (نشط)" selected="true" />
+            </children>
+        </HBox>
+
+        <HBox alignment="CENTER_RIGHT" spacing="15.0">
+            <children>
+                <Button mnemonicParsing="false" onAction="#handleCancel" prefWidth="100.0" styleClass="button-secondary" text="إلغاء" />
+                <Button fx:id="saveBtn" defaultButton="true" mnemonicParsing="false" onAction="#handleSave" prefWidth="150.0" styleClass="button-primary" text="حفظ الدواء" />
+            </children>
+            <VBox.margin>
+                <Insets top="10.0" />
+            </VBox.margin>
+        </HBox>
+    </children>
+</VBox>

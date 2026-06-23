@@ -1,0 +1,469 @@
+/* =======================================================
+   Pharmacy ERP - Global Flat Design Stylesheet
+   ======================================================= */
+
+/* =========================================
+   1. الخطوط والخلفية الأساسية
+========================================= */
+.root {
+    -fx-font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    -fx-background-color: #f4f6f8;
+}
+
+/* =========================================
+   2. حقول الإدخال (Text Fields & Validation)
+========================================= */
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 4px;
+    -fx-background-radius: 4px;
+    -fx-padding: 8px;
+    -fx-font-size: 14px;
+}
+
+.text-field:focused {
+    -fx-border-color: #0ba360; /* توحيد لون التركيز للأخضر الطبي */
+    -fx-border-width: 2px;
+    -fx-background-insets: -1;
+}
+
+.custom-text-field {
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 8;
+    -fx-border-color: #dcdde1;
+    -fx-border-radius: 8;
+    -fx-border-width: 1.5;
+    -fx-padding: 0 40 0 40;
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+}
+
+.custom-text-field:focused {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #0ba360;
+    -fx-effect: dropshadow(gaussian, rgba(11, 163, 96, 0.25), 8, 0, 0, 0);
+}
+
+.error-state {
+    -fx-border-color: #e74c3c !important;
+    -fx-border-width: 2px !important;
+    -fx-background-color: #fadbd8 !important;
+}
+
+.error-message {
+    -fx-text-fill: #e74c3c;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+}
+
+/* =========================================
+   3. الأزرار (الحل النهائي لمنع الانكماش)
+========================================= */
+/* دمج الأزرار العادية والقوائم المنسدلة في نفس التنسيق */
+.button, .menu-button {
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-background-insets: 0 !important; 
+    -fx-border-insets: 0 !important;
+    -fx-padding: 10px 15px !important;
+    -fx-background-radius: 6px !important;
+    -fx-border-radius: 6px !important;
+}
+
+.button:hover, .button:armed, .button:pressed, .button:focused,
+.menu-button:hover, .menu-button:showing, .menu-button:focused {
+    -fx-background-insets: 0 !important;
+    -fx-padding: 10px 15px !important;
+    -fx-translate-y: 0 !important;
+}
+
+/* الألوان الأساسية للأزرار المتنوعة */
+.button-primary, .btn-primary-action, .primary-button {
+    -fx-background-color: #0ba360 !important;
+    -fx-text-fill: white !important;
+}
+.button-primary:hover, .btn-primary-action:hover, .primary-button:hover { 
+    -fx-background-color: #098a51 !important; 
+}
+.primary-button:pressed {
+    -fx-background-color: #076b3f !important;
+}
+
+.button-success {
+    -fx-background-color: #27ae60 !important;
+    -fx-text-fill: white !important;
+}
+.button-success:hover { -fx-background-color: #219653 !important; }
+
+.button-danger, .btn-danger-action, .btn-logout {
+    -fx-background-color: #e74c3c !important;
+    -fx-text-fill: white !important;
+}
+.button-danger:hover, .btn-danger-action:hover, .btn-logout:hover { 
+    -fx-background-color: #c0392b !important; 
+}
+
+/* زر سند الصرف وسند القبض */
+.button-secondary, .btn-cancel, .custom-menu-btn {
+    -fx-background-color: #f1f2f6 !important;
+    -fx-text-fill: #2f3640 !important;
+    -fx-border-color: #dcdde1 !important;
+    -fx-border-width: 1 !important;
+}
+.button-secondary:hover, .btn-cancel:hover, .custom-menu-btn:hover {
+    -fx-background-color: #dfe4ea !important;
+}
+
+/* =========================================
+   4. الجداول (TableView) والترقيم
+========================================= */
+.table-view {
+    -fx-background-color: transparent;
+    -fx-border-color: #ecf0f1;
+    -fx-border-radius: 4px;
+}
+.table-view .column-header-background {
+    -fx-background-color: #ecf0f1;
+}
+.table-view .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 40px;
+    -fx-border-width: 0 1 1 0;
+    -fx-border-color: #bdc3c7;
+    -fx-alignment: CENTER;
+}
+.table-view .column-header .label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+.table-row-cell:odd { -fx-background-color: #fdfdfd; }
+.table-row-cell:even { -fx-background-color: #ffffff; }
+.table-row-cell:selected {
+    -fx-background-color: #e3f2fd;
+    -fx-text-fill: #2c3e50;
+}
+.table-column {
+    -fx-alignment: CENTER;
+}
+.table-view .text-field {
+    -fx-background-color: #ffffff !important;
+    -fx-text-fill: #000000 !important;
+    -fx-border-color: #3498db;
+    -fx-border-width: 2px;
+    -fx-padding: 2px;
+}
+.table-view .combo-box {
+    -fx-background-color: #ffffff !important;
+}
+.table-view .combo-box .list-cell {
+    -fx-text-fill: #000000 !important;
+}
+
+/* الترقيم (Pagination) */
+.pagination { -fx-padding: 0; }
+.pagination .control-box {
+    -fx-spacing: 10;
+    -fx-alignment: center;
+}
+.pagination .page-link {
+    -fx-background-color: transparent;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #475569;
+    -fx-min-width: 38px;
+    -fx-min-height: 38px;
+    -fx-background-insets: 0 !important;
+}
+.pagination .page-link:hover {
+    -fx-background-color: #f1f5f9;
+}
+.pagination .page-link:selected {
+    -fx-background-color: #0ba360; /* توحيد اللون */
+    -fx-text-fill: white;
+    -fx-border-color: #0ba360;
+}
+.pagination .left-arrow, .pagination .right-arrow {
+    -fx-background-color: #64748b;
+    -fx-min-width: 14px;
+    -fx-min-height: 14px;
+}
+.pagination .left-arrow-button, .pagination .right-arrow-button {
+    -fx-background-color: transparent;
+    -fx-border-color: #cbd5e1;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 10 8 10;
+    -fx-background-insets: 0 !important;
+}
+.pagination .left-arrow-button:hover, .pagination .right-arrow-button:hover {
+    -fx-background-color: #f1f5f9;
+}
+
+/* =========================================
+   5. القوائم والشريط العلوي والجانبي
+========================================= */
+.navbar {
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 10, 0, 0, 2); 
+}
+.navbar-icon-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #2c3e50;
+    -fx-font-size: 22px;
+    -fx-cursor: hand;
+    -fx-padding: 5 10 5 10;
+    -fx-background-radius: 5;
+}
+.navbar-icon-btn:hover { -fx-background-color: #f1f2f6; }
+
+.sidebar { -fx-background-color: #1e2b3c; }
+.profile-section {
+    -fx-background-color: #151e2b;
+    -fx-padding: 20;
+}
+.sidebar-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #bdc3c7;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: center-left;
+    -fx-padding: 12 20 12 20;
+    -fx-cursor: hand;
+}
+.sidebar-btn:hover {
+    -fx-background-color: #2a3b52;
+    -fx-text-fill: #ffffff;
+}
+
+/* إصلاح القوائم المطوية (Accordion) */
+.sidebar-accordion .titled-pane > .title {
+    -fx-background-color: transparent;
+    -fx-padding: 12 20 12 20;
+    -fx-cursor: hand;
+}
+.sidebar-accordion .titled-pane > .title:hover {
+    -fx-background-color: #2a3b52;
+}
+.sidebar-accordion .titled-pane > .title > .text {
+    -fx-fill: #bdc3c7;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+.sidebar-accordion .titled-pane:expanded > .title > .text {
+    -fx-fill: #0ba360; 
+}
+.sidebar-accordion .titled-pane > .content {
+    -fx-background-color: #151e2b; 
+    -fx-border-width: 0;
+    -fx-padding: 5 0 5 0;
+}
+.submenu-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #95a5a6;
+    -fx-font-size: 13px;
+    -fx-alignment: center-left;
+    -fx-padding: 10 35 10 15; 
+    -fx-cursor: hand;
+}
+.submenu-btn:hover {
+    -fx-background-color: #1e2b3c;
+    -fx-text-fill: #ffffff;
+}
+
+/* =========================================
+   6. البطاقات ولوحات القيادة (Dashboard Cards)
+========================================= */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: #f4f6f9;
+}
+.scroll-pane .viewport { -fx-background-color: transparent; }
+
+.page-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 0 0 10 0;
+}
+
+.pos-panel, .dashboard-card, .kpi-card {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-padding: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.05), 10, 0, 0, 5);
+}
+
+.section-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+    -fx-padding: 0 0 15 0;
+}
+
+.kpi-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #7f8c8d;
+}
+.kpi-value {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-padding: 10 0 0 0;
+}
+.kpi-icon {
+    -fx-font-size: 18px;
+    -fx-padding: 8;
+    -fx-background-radius: 50;
+}
+.icon-green { -fx-background-color: #e8f8f5; -fx-text-fill: #0ba360; }
+.icon-blue { -fx-background-color: #eaf2f8; -fx-text-fill: #2980b9; }
+.icon-orange { -fx-background-color: #fef5e7; -fx-text-fill: #d35400; }
+.icon-red { -fx-background-color: #fdedec; -fx-text-fill: #c0392b; }
+
+/* =========================================
+   7. شاشة تسجيل الدخول (Login)
+========================================= */
+.login-background {
+    -fx-background-color: linear-gradient(to bottom right, #0ba360, #3cba92);
+}
+.login-card {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 20, 0, 0, 10);
+}
+.login-title {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+.login-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #7f8c8d;
+}
+.input-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+}
+.input-icon {
+    -fx-text-fill: #95a5a6;
+    -fx-font-size: 18px;
+}
+
+/* =========================================
+   8. التنبيهات وحالة الوردية (Alerts & Shifts)
+========================================= */
+.alert-warning-btn {
+    -fx-background-color: #fff3e0 !important;
+    -fx-text-fill: #d35400 !important;
+    /* إجبار الزر على الاحتفاظ بشكله البيضاوي حتى لا يتأثر بالـ hover العام */
+    -fx-background-radius: 20px !important; 
+    -fx-border-radius: 20px !important;
+}
+.alert-warning-btn:hover { 
+    -fx-background-color: #ffe0b2 !important; 
+}
+
+.alert-danger-btn {
+    -fx-background-color: #fdecea !important;
+    -fx-text-fill: #c0392b !important;
+    -fx-background-radius: 20px !important;
+    -fx-border-radius: 20px !important;
+}
+.alert-danger-btn:hover { 
+    -fx-background-color: #fadbd8 !important; 
+}
+
+.shift-closed-btn {
+    -fx-background-color: #fdecea !important;
+    -fx-text-fill: #c0392b !important;
+    -fx-border-color: #c0392b !important;
+    -fx-border-radius: 6px !important;
+}
+.shift-closed-btn:hover { -fx-background-color: #fadbd8 !important; }
+
+.shift-open-btn {
+    -fx-background-color: #e8f8f5 !important;
+    -fx-text-fill: #0ba360 !important;
+    -fx-border-color: #0ba360 !important;
+    -fx-border-radius: 6px !important;
+}
+.shift-open-btn:hover { -fx-background-color: #d1f2eb !important; }
+
+/* =========================================
+   9. النوافذ المنبثقة (Modals)
+========================================= */
+.dialog-root {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #0ba360; 
+    -fx-border-width: 4 0 0 0;
+}
+/* =========================================
+   تنسيق القائمة المنسدلة لأزرار الـ Navbar
+========================================= */
+/* إزالة الهوامش الافتراضية المزعجة من القائمة لتتطابق مع عرض الزر */
+.custom-menu-btn .context-menu {
+    -fx-padding: 0;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dcdde1;
+    -fx-border-width: 1;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 3);
+}
+
+/* تنسيق الخيارات من الداخل */
+.custom-menu-btn .menu-item {
+    -fx-padding: 10 5 10 5;
+    -fx-cursor: hand;
+}
+
+/* لون العنصر عند تمرير الماوس (Hover) */
+.custom-menu-btn .menu-item:focused {
+    
+    -fx-text-fill: #000000;
+}
+
+/* =========================================
+   توحيد أحجام ومحاذاة أزرار الشريط العلوي (Navbar)
+========================================= */
+/* 1. إجبار جميع الأزرار والقوائم على ارتفاع واحد بالضبط */
+.navbar .button, .navbar .menu-button {
+    -fx-pref-height: 42px !important;
+    -fx-min-height: 42px !important;
+    -fx-max-height: 42px !important;
+    -fx-alignment: center !important;
+    -fx-padding: 0 15px !important; /* توحيد المسافات الداخلية */
+}
+
+/* 2. توحيد عرض أزرار السندات ليكونوا توائم */
+.custom-menu-btn {
+    .custom-menu-btn {
+    /* ... باقي التنسيقات كما هي ... */
+    -fx-padding: 0 50px 0 50px !important; /* تقليل الفراغ الجانبي ليتناسب مع العرض الجديد */
+}
+}
+
+/* 3. الخدعة السحرية للباجات: استخدام Translate بدلاً من Margins */
+.badge-label {
+    -fx-translate-y: -10px; /* الرفع للأعلى بصرياً فقط */
+    -fx-translate-x: -10px; /* الإزاحة لليسار بصرياً فقط */
+    -fx-background-radius: 10px;
+    -fx-padding: 2px 6px;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.badge-danger { -fx-background-color: #e74c3c; }
+.badge-warning { -fx-background-color: #f39c12; }
+
+
+

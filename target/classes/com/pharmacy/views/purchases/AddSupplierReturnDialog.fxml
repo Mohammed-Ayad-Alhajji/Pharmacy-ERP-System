@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="15" stylesheets="@/com/pharmacy/styles/global.css" prefWidth="950" prefHeight="650" 
+      nodeOrientation="RIGHT_TO_LEFT" xmlns="http://javafx.com/javafx/17" 
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.purchases.AddSupplierReturnController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" spacing="15" styleClass="header-box">
+        <Label text="إنشاء مرتجع مورد جديد" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label text="رقم الفاتورة (INV):" style="-fx-font-weight: bold;" />
+        <TextField fx:id="txtPurchaseId" promptText="أدخل رقم الفاتورة..." prefWidth="150" />
+        <Button text="جلب الفاتورة" onAction="#handleFetchPurchase" styleClass="btn-primary" />
+    </HBox>
+
+    <HBox spacing="30" style="-fx-background-color: #f1f2f6; -fx-padding: 15; -fx-background-radius: 8; -fx-border-color: #dcdde1; -fx-border-radius: 8;">
+        <Label fx:id="lblSupplierName" text="المورد: ---" style="-fx-font-weight: bold;" />
+        <Label fx:id="lblInvoiceDate" text="تاريخ الشراء: ---" style="-fx-font-weight: bold;" />
+        <Label fx:id="lblTotalInvoice" text="إجمالي الفاتورة: 0 ل.س" style="-fx-font-weight: bold; -fx-text-fill: #2f3542;" />
+    </HBox>
+
+    <TableView fx:id="tvReturnItems" VBox.vgrow="ALWAYS" styleClass="main-table">
+        <columns>
+            <TableColumn fx:id="colIndex" text="#" prefWidth="40" />
+            <TableColumn fx:id="colMedicineName" text="اسم الدواء" prefWidth="180" />
+            <TableColumn fx:id="colBatchNumber" text="رقم الطبخة" prefWidth="120" />
+            <TableColumn fx:id="colPurchasedQty" text="المتاح للإرجاع" prefWidth="110" />
+            <TableColumn fx:id="colCurrentStock" text="رصيد المستودع" prefWidth="110" />
+            <TableColumn fx:id="colUnitPrice" text="سعر التكلفة" prefWidth="110" />
+            <TableColumn fx:id="colReturnQty" text="الكمية المرتجعة" prefWidth="130" style="-fx-font-weight: bold; -fx-alignment: CENTER; -fx-background-color: #fff9c4;"/>
+            <TableColumn fx:id="colRefundValue" text="قيمة الاسترداد" prefWidth="120" />
+        </columns>
+        <placeholder>
+            <Label text="يرجى إدخال رقم الفاتورة وجلب البيانات لعرض المواد القابلة للإرجاع" style="-fx-text-fill: #7f8c8d;"/>
+        </placeholder>
+    </TableView>
+
+    <HBox alignment="CENTER_LEFT" style="-fx-background-color: #e8f8f5; -fx-padding: 10; -fx-background-radius: 5;">
+        <Label text="* تنبيه: حفظ المرتجع سيقوم بخصم الأدوية من المستودع، وتخفيض الرصيد المالي المطلوب لهذه الفاتورة تلقائياً." style="-fx-text-fill: #117a65; -fx-font-size: 12px;" />
+    </HBox>
+
+    <HBox spacing="20" alignment="CENTER_RIGHT">
+        <VBox spacing="5" HBox.hgrow="ALWAYS">
+            <Label text="سبب الإرجاع (اختياري):" />
+            <TextField fx:id="txtReason" promptText="مثال: تلف، انتهاء صلاحية، خطأ في الطلب..." />
+        </VBox>
+        <VBox alignment="CENTER_RIGHT" spacing="5">
+            <Label text="إجمالي قيمة المرتجع:" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+            <Label fx:id="lblTotalRefund" text="0.00 ل.س" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #e74c3c;" />
+        </VBox>
+        <Button text="تأكيد وحفظ المرتجع" onAction="#handleSaveReturn" 
+                style="-fx-background-color: #e67e22; -fx-text-fill: white; -fx-font-size: 16px; -fx-font-weight: bold; -fx-padding: 10 20;" />
+    </HBox>
+</VBox>

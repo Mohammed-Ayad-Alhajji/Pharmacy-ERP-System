@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox nodeOrientation="RIGHT_TO_LEFT" prefWidth="550.0" spacing="15.0" styleClass="modal-dialog" stylesheets="@/com/pharmacy/styles/global.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pharmacy.controllers.inventory.AddDisposalController">
+    <padding>
+        <Insets bottom="20.0" left="25.0" right="25.0" top="20.0" />
+    </padding>
+    <children>
+        <Label text="تسجيل إتلاف أدوية (تالف/منتهي الصلاحية)" textFill="#c0392b">
+            <font><Font name="System Bold" size="20.0" /></font>
+        </Label>
+        <Separator />
+
+        <VBox spacing="5.0">
+            <Label text="1. تحديد الدواء *" textFill="#34495e"><font><Font name="System Bold" size="13.0" /></font></Label>
+            <ComboBox fx:id="medicineCombo" editable="true" maxWidth="Infinity" promptText="ابحث عن الدواء..." />
+        </VBox>
+
+        <VBox spacing="5.0">
+            <Label text="2. تحديد الدفعة المراد إتلافها (Batch) *" textFill="#34495e"><font><Font name="System Bold" size="13.0" /></font></Label>
+            <ComboBox fx:id="batchCombo" disable="true" maxWidth="Infinity" promptText="اختر الطبخة..." />
+        </VBox>
+
+        <HBox spacing="10.0" style="-fx-background-color: #f8f9fa; -fx-padding: 10; -fx-border-color: #dcdde1; -fx-border-radius: 5;">
+            <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                <Label text="تكلفة العلبة (شراء)" textFill="#7f8c8d"><font><Font name="System Bold" size="12.0" /></font></Label>
+                <TextField fx:id="costPerBoxField" disable="true" style="-fx-opacity: 0.8; -fx-font-weight: bold;" />
+            </VBox>
+            <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                <Label text="الكمية المتلفة (بالعلبة) *" textFill="#e67e22"><font><Font name="System Bold" size="12.0" /></font></Label>
+                <TextField fx:id="qtyDisposedField" promptText="الكمية" />
+            </VBox>
+            <VBox spacing="5.0" HBox.hgrow="ALWAYS">
+                <Label text="إجمالي التكلفة" textFill="#c0392b"><font><Font name="System Bold" size="12.0" /></font></Label>
+                <TextField fx:id="totalCostField" disable="true" style="-fx-opacity: 1; -fx-font-weight: bold; -fx-text-fill: #c0392b;" />
+            </VBox>
+        </HBox>
+
+        <VBox spacing="5.0" style="-fx-background-color: #eafaf1; -fx-padding: 10; -fx-border-color: #a3e4d7; -fx-border-radius: 5;">
+            <Label text="تعويض المورد (إن وجد)" textFill="#27ae60"><font><Font name="System Bold" size="13.0" /></font></Label>
+            <TextField fx:id="compensationField" promptText="0.00 ل.س (اتركه فارغاً إن لم يوجد تعويض)" />
+            <HBox alignment="CENTER_LEFT">
+                <Label text="الخسارة الفعلية للصيدلية: " />
+                <Label fx:id="lblPharmacyLoss" text="0.00 ل.س" style="-fx-font-weight: bold; -fx-text-fill: #c0392b; -fx-font-size: 14px;" />
+            </HBox>
+        </VBox>
+
+        <VBox spacing="5.0">
+            <Label text="سبب الإتلاف *" textFill="#34495e"><font><Font name="System Bold" size="13.0" /></font></Label>
+            <TextArea fx:id="reasonArea" prefHeight="60.0" promptText="مثال: منتهي الصلاحية، مكسور أثناء النقل..." wrapText="true" />
+        </VBox>
+
+        <HBox alignment="CENTER_RIGHT" spacing="15.0">
+            <VBox.margin><Insets top="10.0" /></VBox.margin>
+            <Button mnemonicParsing="false" onAction="#handleCancel" prefWidth="100.0" styleClass="button-secondary" text="إلغاء" />
+            <Button fx:id="saveBtn" defaultButton="true" mnemonicParsing="false" onAction="#handleSave" prefWidth="150.0" styleClass="button-primary" style="-fx-background-color: #c0392b;" text="اعتماد الإتلاف 🗑️" />
+        </HBox>
+    </children>
+</VBox>
