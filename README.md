@@ -8,6 +8,19 @@
 | الشاشة الرئيسية
 
 ![Dashboard](images/dashboard.png)
+
+| شاشة البيع
+
+![Dashboard](images/pos.png)
+
+| شاشة التقرير المالي للصيدلية
+
+![Dashboard](images/Financial_Executive_Report.png)
+
+| شاشة الادوار والصلاحيات
+
+![Dashboard](images/Roles_Permissions.png)
+
 ---
 
 ## ✨ الميزات الهندسية والوظيفية الشاملة
