@@ -5,12 +5,8 @@
 ---
 
 ## 📸 واجهات النظام
-| الشاشة الرئيسية (Dashboard) | نقطة البيع (POS) |
-| :---: | :---: |
-| ![Dashboard](images/dashboard.png) | ![POS](images/pos.png) |
-| **إدارة المخزون (Inventory)** | **إدارة الموردين (Suppliers)** |
-| ![Inventory](images/inventory.png) | ![Suppliers](images/suppliers.png) |
-
+| الشاشة الرئيسية 
+![Dashboard](images/dashboard.png)
 ---
 
 ## ✨ الميزات الهندسية والوظيفية الشاملة
