@@ -80,12 +80,13 @@ git clone [https://github.com/Mohammed-Ayad-Alhajji/Pharmacy-ERP-System.git](htt
 أضف مكتبات JavaFX إلى (Global Libraries).
 
 خطوة هامة: في إعدادات التشغيل (Run/Debug Configurations)، أضف السطر التالي إلى حقل VM Options (مع تعديل المسار لمسار JavaFX لديك):
-
+```
 Plaintext
 --module-path "C:\path\to\javafx-sdk\lib" --add-modules javafx.controls,javafx.fxml
+```
 ▶️ 3. التشغيل (Running)
 قم بتنفيذ الفئة الرئيسية Main.java.
 
-سيقوم النظام بالتحقق من وجود قاعدة البيانات؛ إن لم تكن موجودة، سيتم بناؤها فوراً وسيتم توجيهك لشاشة تسجيل الدخول الأولى.
+سيقوم النظام بالتحقق من وجود قاعدة البيانات؛ إن لم تكن موجودة، سيتم بناؤها فوراً وسيتم توجيهك لشاشة تسجيل الدخول الأولى سكون اسم المستحدم admin وكلمة السر admin123.
 
 تم التطوير بواسطة: محمد أياد الحاجي
